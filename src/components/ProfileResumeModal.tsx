@@ -2,6 +2,7 @@ import React from 'react';
 import { X, Download, Printer, CheckCircle2, Award, Briefcase, Cpu, MapPin, Mail, Phone, Globe } from 'lucide-react';
 import { TELECOM_IMAGES, CAREER_EXPERIENCES, SKILL_CATEGORIES } from '../data/telecomData';
 import { NepalFlag } from './NepalFlag';
+import { NepalTelecomLogo, ClassicTechLogo } from './CompanyLogos';
 
 interface ProfileResumeModalProps {
   isOpen: boolean;
@@ -94,7 +95,7 @@ export const ProfileResumeModal: React.FC<ProfileResumeModalProps> = ({ isOpen, 
             <div className="flex flex-col gap-1.5 text-xs font-body-sm text-on-surface-variant md:text-right">
               <div className="flex items-center md:justify-end gap-2">
                 <MapPin className="w-3.5 h-3.5 text-primary" />
-                <span>Home: Gorkha, Nepal | Current: Palpa, Nepal</span>
+                <span>Home: Gorkha, Nepal | Work: Palpa, Nepal</span>
               </div>
               <div className="flex items-center md:justify-end gap-2">
                 <Mail className="w-3.5 h-3.5 text-primary" />
@@ -132,13 +133,19 @@ export const ProfileResumeModal: React.FC<ProfileResumeModalProps> = ({ isOpen, 
               {CAREER_EXPERIENCES.map((exp) => (
                 <div key={exp.id} className="flex flex-col gap-2 bg-[#060d24] p-4 rounded-xl border border-primary/10">
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <div>
-                      <h3 className="font-headline-sm text-base text-white font-semibold">{exp.role}</h3>
-                      <p className="font-body-sm text-xs text-primary font-medium">{exp.company}</p>
+                    <div className="flex items-center gap-3">
+                      <div>
+                        <h3 className="font-headline-sm text-base text-white font-semibold">{exp.role}</h3>
+                        <p className="font-body-sm text-xs text-primary font-medium">{exp.company}</p>
+                      </div>
                     </div>
-                    <span className="font-tech-badge text-xs text-secondary bg-surface-container px-2.5 py-1 rounded">
-                      {exp.period}
-                    </span>
+                    <div className="flex items-center gap-3">
+                      {exp.id === 'ntc-technician' && <NepalTelecomLogo size="sm" />}
+                      {exp.id === 'classic-tech' && <ClassicTechLogo size="sm" />}
+                      <span className="font-tech-badge text-xs text-secondary bg-surface-container px-2.5 py-1 rounded">
+                        {exp.period}
+                      </span>
+                    </div>
                   </div>
                   <ul className="flex flex-col gap-1 pt-1">
                     {exp.highlights.map((h, i) => (

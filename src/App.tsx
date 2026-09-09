@@ -71,20 +71,20 @@ export default function App() {
       {/* Main Content Area */}
       <main className="w-full pt-20 bg-[#0b1229] flex-1">
         <div className="flex flex-col w-full">
-          {/* Hero Section */}
+          {/* Hero Section / Summary Profile */}
           <HeroSection
             onContactClick={() => handleNavigate('contact')}
             onOpenResume={() => setResumeModalOpen(true)}
           />
+
+          {/* Field & Professional Photo Gallery */}
+          <GallerySection onSelectPhoto={(photo) => setSelectedPhoto(photo)} />
 
           {/* Career Experience & Deployment Milestones */}
           <ExperienceSection />
 
           {/* Technical Skills & Core Competencies */}
           <ExpertiseSection />
-
-          {/* Field & Professional Photo Gallery (8 Nodes, no text on grid) */}
-          <GallerySection onSelectPhoto={(photo) => setSelectedPhoto(photo)} />
 
           {/* Contact & Direct Carrier Communication */}
           <ContactSection />

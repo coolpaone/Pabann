@@ -1,6 +1,7 @@
 import React from 'react';
 import { ExternalLink, CheckCircle2 } from 'lucide-react';
 import { CAREER_EXPERIENCES } from '../data/telecomData';
+import { NepalTelecomLogo, ClassicTechLogo } from './CompanyLogos';
 
 export const ExperienceSection: React.FC = () => {
   return (
@@ -83,14 +84,20 @@ export const ExperienceSection: React.FC = () => {
                   )}
                 </div>
 
-                {/* Role and Company */}
-                <div className="flex flex-col">
-                  <h3 className="font-headline-md text-xl sm:text-2xl text-on-surface font-semibold group-hover:text-primary transition-colors">
-                    {exp.role}
-                  </h3>
-                  <span className="font-body-md text-sm sm:text-base text-primary font-medium">
-                    {exp.company}
-                  </span>
+                {/* Role and Company with Official Carrier Logos */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="flex flex-col">
+                    <h3 className="font-headline-md text-xl sm:text-2xl text-on-surface font-semibold group-hover:text-primary transition-colors">
+                      {exp.role}
+                    </h3>
+                    <span className="font-body-md text-sm sm:text-base text-primary font-medium">
+                      {exp.company}
+                    </span>
+                  </div>
+                  <div className="shrink-0 self-start sm:self-center">
+                    {exp.id === 'ntc-technician' && <NepalTelecomLogo size="md" />}
+                    {exp.id === 'classic-tech' && <ClassicTechLogo size="md" />}
+                  </div>
                 </div>
 
                 {exp.summary && (

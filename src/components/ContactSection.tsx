@@ -60,8 +60,11 @@ export const ContactSection: React.FC = () => {
                 <span className="font-headline-sm text-lg text-on-surface font-semibold">
                   Paban Nepali
                 </span>
+                <span className="font-body-sm text-xs text-primary font-medium">
+                  Nepal Telecom
+                </span>
                 <span className="font-tech-badge text-xs text-secondary font-medium">
-                  Nepal Telecom Staff Technician
+                  Telecom Technician
                 </span>
               </div>
             </div>
@@ -77,7 +80,7 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div className="flex flex-col min-w-0">
                   <span className="font-label-caps text-[10px] text-outline uppercase font-semibold">
-                    Official Telecom Email
+                    Official Email
                   </span>
                   <span className="font-tech-badge text-xs text-on-surface group-hover:text-secondary transition-colors truncate">
                     paban.nepali@ntc.net.np
@@ -97,7 +100,7 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div className="flex flex-col min-w-0">
                   <span className="font-label-caps text-[10px] text-outline uppercase font-semibold">
-                    Personal Engineering Portal
+                    Personal Portal
                   </span>
                   <span className="font-tech-badge text-xs text-on-surface group-hover:text-secondary transition-colors truncate">
                     www.pabannepali.com.np

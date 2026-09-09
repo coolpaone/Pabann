@@ -15,9 +15,6 @@ export const Footer: React.FC = () => {
               </span>
             </div>
             <div className="flex flex-wrap items-center gap-2 pt-1">
-              <span className="font-tech-badge text-[11px] text-secondary bg-surface-container px-2.5 py-1 rounded border border-secondary/20">
-                NTC CERTIFIED
-              </span>
               <span className="font-tech-badge text-[11px] text-primary bg-surface-container px-2.5 py-1 rounded border border-primary/20">
                 FIBER OPTIC SPECIALIST
               </span>
@@ -55,7 +52,7 @@ export const Footer: React.FC = () => {
               </a>
               <span className="flex items-center gap-2">
                 <span className="font-tech-badge text-secondary font-semibold">&gt;</span>
-                Gorkha &amp; Palpa, Nepal
+                Home: Gorkha, Nepal, Work: Palpa, Nepal
               </span>
               <span className="flex items-center gap-2">
                 <span className="font-tech-badge text-secondary font-semibold">&gt;</span>
@@ -66,7 +63,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom copyright line */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="pt-14 sm:pt-20 mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="font-tech-badge text-xs text-outline">
             © 2026 Paban Nepali. All rights reserved.
           </p>

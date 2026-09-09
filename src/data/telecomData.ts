@@ -86,7 +86,7 @@ export const CAREER_EXPERIENCES: MilestoneExperience[] = [
     roleType: 'FIELD OPERATIONS',
     role: 'Technical Assistant',
     company: 'Nepal Telecom (Naxal Exchange)',
-    location: 'Naxal, Kathmandu',
+    location: 'Kathmandu, Nepal',
     highlights: [
       'Maintained and repaired primary fiber optic trunks and copper loop lines across central Kathmandu.',
       'Installed terminal subscriber modem equipment, landline phones, and optical transceivers.',

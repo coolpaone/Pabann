@@ -25,13 +25,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <div className="lg:col-span-7 flex flex-col gap-5">
             {/* Header Badges */}
             <div className="flex flex-wrap items-center gap-2.5">
-              <span className="px-3.5 py-1 bg-surface-container-high border border-secondary/30 rounded-full font-tech-badge text-xs text-secondary flex items-center gap-2 shadow-[0_0_12px_rgba(76,215,246,0.25)]">
-                <span className="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_6px_#4cd7f6]"></span>
-                NEPAL TELECOM CERTIFIED
-              </span>
               <span className="px-3.5 py-1 bg-surface-container-high border border-outline/20 rounded-full font-tech-badge text-xs text-on-surface-variant flex items-center gap-2">
                 <NepalFlag size="sm" />
-                <span>Gorkha &amp; Palpa, Nepal</span>
+                <span>Home: Gorkha, Nepal, Work: Palpa, Nepal</span>
               </span>
             </div>
 
