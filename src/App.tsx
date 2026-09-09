@@ -77,11 +77,11 @@ export default function App() {
             onOpenResume={() => setResumeModalOpen(true)}
           />
 
-          {/* Field & Professional Photo Gallery */}
-          <GallerySection onSelectPhoto={(photo) => setSelectedPhoto(photo)} />
-
           {/* Career Experience & Deployment Milestones */}
           <ExperienceSection />
+
+          {/* Field & Professional Photo Gallery */}
+          <GallerySection onSelectPhoto={(photo) => setSelectedPhoto(photo)} />
 
           {/* Technical Skills & Core Competencies */}
           <ExpertiseSection />

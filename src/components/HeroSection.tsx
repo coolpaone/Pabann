@@ -1,7 +1,6 @@
 import React from 'react';
-import { Send, MapPin, Radio } from 'lucide-react';
+import { Send, Radio } from 'lucide-react';
 import { TELECOM_IMAGES } from '../data/telecomData';
-import { NepalFlag } from './NepalFlag';
 
 interface HeroSectionProps {
   onContactClick: () => void;
@@ -23,14 +22,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Column Text & Actions */}
           <div className="lg:col-span-7 flex flex-col gap-5">
-            {/* Header Badges */}
-            <div className="flex flex-wrap items-center gap-2.5">
-              <span className="px-3.5 py-1 bg-surface-container-high border border-outline/20 rounded-full font-tech-badge text-xs text-on-surface-variant flex items-center gap-2">
-                <NepalFlag size="sm" />
-                <span>Home: Gorkha, Nepal, Work: Palpa, Nepal</span>
-              </span>
-            </div>
-
             {/* Main Headline */}
             <div className="flex flex-col gap-1.5">
               <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl text-on-surface tracking-tight font-bold">
