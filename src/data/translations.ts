@@ -94,6 +94,8 @@ export interface Translations {
     profileRole: string;
     officialEmail: string;
     personalPortal: string;
+    homeLabel: string;
+    workLabel: string;
     directContactNumber: string;
     locationLabel: string;
     locationValue: string;
@@ -195,7 +197,7 @@ export const TRANSLATIONS: Record<'en' | 'ne', Translations> = {
     },
     gallery: {
       badge: 'FIELD EVIDENCE & SITES',
-      title: 'Field & Professional Photo Gallery',
+      title: 'Gallery',
       subtitle: 'Photographic documentation of telecommunication tower deployments, optical splicing labs, mountain BTS sites, and core exchange operations across Nepal.',
       filters: {
         all: 'All Operations',
@@ -227,7 +229,7 @@ export const TRANSLATIONS: Record<'en' | 'ne', Translations> = {
       title: 'Dense Wavelength & Fiber Infrastructure',
       description: 'Engineering resilient, ultra-low attenuation fiber backbones capable of sustaining national telecommunications throughput across rugged topography and high-density urban clusters.',
       metric1Label: 'Core Optical Precision',
-      metric1Val: '< 0.02 dB',
+      metric1Val: '< 0.01 dB',
       metric2Label: 'DWDM Spectral Bands',
       metric2Val: 'C & L Band',
       metric3Label: 'Optical Availability',
@@ -240,19 +242,21 @@ export const TRANSLATIONS: Record<'en' | 'ne', Translations> = {
       profileName: 'Paban Nepali',
       profileCompany: 'Nepal Telecom',
       profileRole: 'Telecom Technician',
-      officialEmail: 'Official Email',
-      personalPortal: 'Personal Portal',
+      officialEmail: 'OFFICIAL EMAIL',
+      personalPortal: 'PERSONAL PORTAL',
+      homeLabel: 'HOME',
+      workLabel: 'WORK / LOCATION',
       directContactNumber: 'Direct Contact Number',
       locationLabel: 'Base Stations & Locations',
       locationValue: 'Home: Gorkha, Nepal | Work: Palpa, Nepal',
       formTitle: 'Direct Dispatch Transmission',
       formSubtitle: 'Send encrypted operational message directly to technician console.',
-      inputName: 'Full Name / Agency',
-      inputEmail: 'Return Email Address',
-      inputSubject: 'Inquiry / Operational Dispatch Subject',
-      inputMessage: 'Operational Brief or Technical Message',
-      submitButton: 'Transmit Message to Dispatch',
-      submitting: 'Transmitting Signal...',
+      inputName: 'FULL NAME',
+      inputEmail: 'EMAIL ADDRESS',
+      inputSubject: 'INQUIRY / OPERATIONAL DISPATCH SUBJECT',
+      inputMessage: 'OPERATIONAL BRIEF OR TECHNICAL MESSAGE',
+      submitButton: 'Transmit Message',
+      submitting: 'Transmitting Message...',
       successMessage: 'Transmission successfully delivered to Paban Nepali. We will respond promptly.',
     },
     footer: {
@@ -341,7 +345,7 @@ export const TRANSLATIONS: Record<'en' | 'ne', Translations> = {
     },
     gallery: {
       badge: 'फिल्ड कार्य तथा प्राविधिक प्रमाण',
-      title: 'फिल्ड कार्य तथा प्राविधिक फोटो ग्यालरी',
+      title: 'ग्यालरी',
       subtitle: 'नेपालभरका दूरसञ्चार टावर विस्तार, अप्टिकल स्प्लिसिङ प्रयोगशाला, पहाडी BTS साइटहरू र मुख्य एक्सचेन्ज सञ्चालनको प्रत्यक्ष तस्बिरहरू।',
       filters: {
         all: 'सबै कार्यहरू',
@@ -373,7 +377,7 @@ export const TRANSLATIONS: Record<'en' | 'ne', Translations> = {
       title: 'सघन तरङ्ग लम्बाइ (DWDM) र फाइबर पूर्वाधार',
       description: 'नेपालको चुनौतीपूर्ण भौगोलिक बनावट र बाक्लो सहरी क्षेत्रमा उच्च गतिको राष्ट्रिय दूरसञ्चार सेवा धान्न सक्ने भरपर्दो, न्यूनतम ह्रास भएको अप्टिकल ब्याकबोन इन्जिनियरिङ।',
       metric1Label: 'कोर अप्टिकल शुद्धता',
-      metric1Val: '< ०.०२ dB',
+      metric1Val: '< ०.०१ dB',
       metric2Label: 'DWDM स्पेक्ट्रल ब्यान्ड',
       metric2Val: 'C र L ब्यान्ड',
       metric3Label: 'अप्टिकल उपलब्धता',
@@ -388,6 +392,8 @@ export const TRANSLATIONS: Record<'en' | 'ne', Translations> = {
       profileRole: 'दूरसञ्चार प्राविधिक',
       officialEmail: 'आधिकारिक इमेल',
       personalPortal: 'व्यक्तिगत पोर्टल',
+      homeLabel: 'गृह जिल्ला',
+      workLabel: 'कार्यक्षेत्र / स्थान',
       directContactNumber: 'प्रत्यक्ष सम्पर्क नम्बर',
       locationLabel: 'आधार स्टेसन तथा स्थान',
       locationValue: 'घर: गोरखा, नेपाल | कार्यक्षेत्र: पाल्पा, नेपाल',

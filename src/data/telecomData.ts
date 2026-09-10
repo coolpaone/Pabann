@@ -104,7 +104,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     icon: 'settings_ethernet',
     accentColor: 'secondary',
     skills: [
-      { name: 'Fiber Splicing & Fusion Core', percentage: 98, detail: '<0.02 dB average loss' },
+      { name: 'Fiber Splicing & Fusion Core', percentage: 98, detail: '<0.01 dB average loss' },
       { name: 'ODP / FDB Box Management', percentage: 95, detail: 'High-density fiber trays' },
       { name: 'OLT & BTS Site Maintenance', percentage: 92, detail: 'Carrier-grade uptime' },
       { name: 'Copper Trunk Cabling & MDF', percentage: 90, detail: 'Legacy & hybrid loops' },

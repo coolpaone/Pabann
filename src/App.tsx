@@ -15,11 +15,19 @@ import { GalleryLightboxModal } from './components/GalleryLightboxModal';
 import { ProfileResumeModal } from './components/ProfileResumeModal';
 import { GalleryItem } from './types';
 import { LanguageProvider } from './context/LanguageContext';
+import { ScrollPhysicsProvider, useScrollPhysics } from './components/motion/ScrollPhysicsContext';
+import { ScrollPrototypeHUD } from './components/motion/ScrollPrototypeHUD';
+import { HeroSectionPrototype } from './components/motion/HeroSectionPrototype';
+import { ExperienceSectionPrototype } from './components/motion/ExperienceSectionPrototype';
+import { GallerySectionPrototype } from './components/motion/GallerySectionPrototype';
+import { ExpertiseSectionPrototype } from './components/motion/ExpertiseSectionPrototype';
+import { ContactSectionPrototype } from './components/motion/ContactSectionPrototype';
 
-export default function App() {
+function PortfolioContent() {
   const [activeSection, setActiveSection] = useState('about');
   const [selectedPhoto, setSelectedPhoto] = useState<GalleryItem | null>(null);
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
+  const { isMotionEnabled } = useScrollPhysics();
 
   // Smooth scroll handler
   const handleNavigate = (sectionId: string) => {
@@ -61,54 +69,88 @@ export default function App() {
   }, []);
 
   return (
-    <LanguageProvider>
-      <div className="min-h-screen bg-[#0b1229] text-[#dce1ff] font-body-md flex flex-col selection:bg-primary-container selection:text-white">
-        {/* Top Fixed Header */}
-        <Navbar
-          activeSection={activeSection}
-          onNavigate={handleNavigate}
-          onOpenResume={() => setResumeModalOpen(true)}
-        />
+    <div className="min-h-screen bg-[#0b1229] text-[#dce1ff] font-body-md flex flex-col selection:bg-primary-container selection:text-white">
+      {/* Top Fixed Header */}
+      <Navbar
+        activeSection={activeSection}
+        onNavigate={handleNavigate}
+        onOpenResume={() => setResumeModalOpen(true)}
+      />
 
-        {/* Main Content Area */}
-        <main className="w-full pt-20 bg-[#0b1229] flex-1">
-          <div className="flex flex-col w-full">
-            {/* Hero Section / Summary Profile with Fiber Optics Transport Banner */}
+      {/* Main Content Area */}
+      <main className="w-full pt-20 bg-[#0b1229] flex-1">
+        <div className="flex flex-col w-full">
+          {/* Hero Section / Summary Profile with Fiber Optics Transport Banner */}
+          {isMotionEnabled ? (
+            <HeroSectionPrototype
+              onContactClick={() => handleNavigate('contact')}
+              onOpenResume={() => setResumeModalOpen(true)}
+            />
+          ) : (
             <HeroSection
               onContactClick={() => handleNavigate('contact')}
               onOpenResume={() => setResumeModalOpen(true)}
             />
+          )}
 
-            {/* Career Experience & Deployment Milestones */}
+          {/* Career Experience & Deployment Milestones */}
+          {isMotionEnabled ? (
+            <ExperienceSectionPrototype />
+          ) : (
             <ExperienceSection />
+          )}
 
-            {/* Field & Professional Photo Gallery */}
+          {/* Field & Professional Photo Gallery */}
+          {isMotionEnabled ? (
+            <GallerySectionPrototype onSelectPhoto={(photo) => setSelectedPhoto(photo)} />
+          ) : (
             <GallerySection onSelectPhoto={(photo) => setSelectedPhoto(photo)} />
+          )}
 
-            {/* Technical Skills & Core Competencies */}
+          {/* Technical Skills & Core Competencies */}
+          {isMotionEnabled ? (
+            <ExpertiseSectionPrototype />
+          ) : (
             <ExpertiseSection />
+          )}
 
-            {/* Contact & Direct Carrier Communication */}
+          {/* Contact & Direct Carrier Communication */}
+          {isMotionEnabled ? (
+            <ContactSectionPrototype />
+          ) : (
             <ContactSection />
-          </div>
-        </main>
+          )}
+        </div>
+      </main>
 
-        {/* Footer */}
-        <Footer />
+      {/* Footer */}
+      <Footer />
 
-        {/* Photo Lightbox Modal */}
-        <GalleryLightboxModal
-          selectedPhoto={selectedPhoto}
-          onClose={() => setSelectedPhoto(null)}
-          onSelectPhoto={(photo) => setSelectedPhoto(photo)}
-        />
+      {/* Photo Lightbox Modal */}
+      <GalleryLightboxModal
+        selectedPhoto={selectedPhoto}
+        onClose={() => setSelectedPhoto(null)}
+        onSelectPhoto={(photo) => setSelectedPhoto(photo)}
+      />
 
-        {/* Printable / Downloadable Carrier Dossier Modal */}
-        <ProfileResumeModal
-          isOpen={resumeModalOpen}
-          onClose={() => setResumeModalOpen(false)}
-        />
-      </div>
+      {/* Printable / Downloadable Carrier Dossier Modal */}
+      <ProfileResumeModal
+        isOpen={resumeModalOpen}
+        onClose={() => setResumeModalOpen(false)}
+      />
+
+      {/* Floating Interactive Prototype HUD & Controls */}
+      <ScrollPrototypeHUD />
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <ScrollPhysicsProvider>
+        <PortfolioContent />
+      </ScrollPhysicsProvider>
     </LanguageProvider>
   );
 }

@@ -7,8 +7,8 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="w-full bg-[#060d24] border-t border-primary/10">
-      <div className="w-full px-5 md:px-10 lg:px-20 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 pb-12 border-b border-outline/15 items-start">
+      <div className="w-full px-5 md:px-10 lg:px-20 py-8 sm:py-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-10 pb-6 sm:pb-8 border-b border-outline/15 items-start">
           {/* Brand & Bio */}
           <div className="md:col-span-7 flex flex-col gap-3">
             <div className="flex items-center gap-2.5">
@@ -38,23 +38,19 @@ export const Footer: React.FC = () => {
             <div className="flex flex-col gap-1 font-code-snippet text-xs text-on-surface-variant md:text-right">
               <span>Stack: DWDM / GPON / OTDR</span>
               <span>Protocol: BGP / MPLS / OSPF</span>
-              <span>Optical Precision: &lt;0.02dB Core Splice</span>
+              <span>Optical Precision: &lt;0.01dB Core Splice</span>
               <span>Zone: Nepal Telecom Carrier Grid</span>
             </div>
           </div>
         </div>
 
-        {/* Bottom copyright line with centered Made with 🩵 By Paban Nepali */}
-        <div className="pt-14 sm:pt-20 mt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-          <p className="font-tech-badge text-xs text-outline order-2 md:order-1">
+        {/* Bottom copyright line */}
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <p className="font-tech-badge text-xs text-outline">
             {t.footer.allRightsReserved}
           </p>
 
-          <p className="font-body-sm text-xs text-on-surface font-medium flex items-center justify-center gap-1.5 order-1 md:order-2">
-            Made with 🩵 By Paban Nepali
-          </p>
-
-          <div className="flex items-center justify-center md:justify-end gap-3 order-3">
+          <div className="flex items-center justify-center sm:justify-end gap-3">
             <span className="font-tech-badge text-xs text-secondary flex items-center gap-2">
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
               {t.footer.nodeActive}

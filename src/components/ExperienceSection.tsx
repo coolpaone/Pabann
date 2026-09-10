@@ -25,14 +25,13 @@ export const ExperienceSection: React.FC = () => {
       period: '2023 - 2024',
       roleType: t.experience.broadbandRole,
       location: 'Kathmandu, Nepal',
-      companyUrl: 'https://classic.com.np',
       highlights: t.experience.classicHighlights,
     },
     {
       id: 'ntc-intern',
       role: t.experience.assistantRole,
       company: t.experience.assistantCompany,
-      period: '2022 - 2023',
+      period: '2020 - 2023',
       roleType: t.experience.fieldOpsRole,
       location: 'Kathmandu, Nepal',
       highlights: t.experience.assistantHighlights,
@@ -114,7 +113,9 @@ export const ExperienceSection: React.FC = () => {
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   ) : (
-                    <span className="font-tech-badge text-xs text-outline">{exp.location}</span>
+                    <span className="font-tech-badge text-xs text-secondary/90 bg-secondary/10 px-2.5 py-1 rounded-md border border-secondary/20">
+                      {exp.location}
+                    </span>
                   )}
                 </div>
 
