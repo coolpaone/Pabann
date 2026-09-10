@@ -5,18 +5,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
-import { HeroSection } from './components/HeroSection';
-import { ExperienceSection } from './components/ExperienceSection';
-import { ExpertiseSection } from './components/ExpertiseSection';
-import { GallerySection } from './components/GallerySection';
-import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { GalleryLightboxModal } from './components/GalleryLightboxModal';
 import { ProfileResumeModal } from './components/ProfileResumeModal';
 import { GalleryItem } from './types';
 import { LanguageProvider } from './context/LanguageContext';
-import { ScrollPhysicsProvider, useScrollPhysics } from './components/motion/ScrollPhysicsContext';
-import { ScrollPrototypeHUD } from './components/motion/ScrollPrototypeHUD';
+import { ScrollPhysicsProvider } from './components/motion/ScrollPhysicsContext';
 import { HeroSectionPrototype } from './components/motion/HeroSectionPrototype';
 import { ExperienceSectionPrototype } from './components/motion/ExperienceSectionPrototype';
 import { GallerySectionPrototype } from './components/motion/GallerySectionPrototype';
@@ -27,7 +21,6 @@ function PortfolioContent() {
   const [activeSection, setActiveSection] = useState('about');
   const [selectedPhoto, setSelectedPhoto] = useState<GalleryItem | null>(null);
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
-  const { isMotionEnabled } = useScrollPhysics();
 
   // Smooth scroll handler
   const handleNavigate = (sectionId: string) => {
@@ -81,45 +74,22 @@ function PortfolioContent() {
       <main className="w-full pt-20 bg-[#0b1229] flex-1">
         <div className="flex flex-col w-full">
           {/* Hero Section / Summary Profile with Fiber Optics Transport Banner */}
-          {isMotionEnabled ? (
-            <HeroSectionPrototype
-              onContactClick={() => handleNavigate('contact')}
-              onOpenResume={() => setResumeModalOpen(true)}
-            />
-          ) : (
-            <HeroSection
-              onContactClick={() => handleNavigate('contact')}
-              onOpenResume={() => setResumeModalOpen(true)}
-            />
-          )}
+          <HeroSectionPrototype
+            onContactClick={() => handleNavigate('contact')}
+            onOpenResume={() => setResumeModalOpen(true)}
+          />
 
           {/* Career Experience & Deployment Milestones */}
-          {isMotionEnabled ? (
-            <ExperienceSectionPrototype />
-          ) : (
-            <ExperienceSection />
-          )}
+          <ExperienceSectionPrototype />
 
           {/* Field & Professional Photo Gallery */}
-          {isMotionEnabled ? (
-            <GallerySectionPrototype onSelectPhoto={(photo) => setSelectedPhoto(photo)} />
-          ) : (
-            <GallerySection onSelectPhoto={(photo) => setSelectedPhoto(photo)} />
-          )}
+          <GallerySectionPrototype onSelectPhoto={(photo) => setSelectedPhoto(photo)} />
 
           {/* Technical Skills & Core Competencies */}
-          {isMotionEnabled ? (
-            <ExpertiseSectionPrototype />
-          ) : (
-            <ExpertiseSection />
-          )}
+          <ExpertiseSectionPrototype />
 
           {/* Contact & Direct Carrier Communication */}
-          {isMotionEnabled ? (
-            <ContactSectionPrototype />
-          ) : (
-            <ContactSection />
-          )}
+          <ContactSectionPrototype />
         </div>
       </main>
 
@@ -138,9 +108,6 @@ function PortfolioContent() {
         isOpen={resumeModalOpen}
         onClose={() => setResumeModalOpen(false)}
       />
-
-      {/* Floating Interactive Prototype HUD & Controls */}
-      <ScrollPrototypeHUD />
     </div>
   );
 }
