@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, ChevronLeft, ChevronRight, Download } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { GalleryItem } from '../types';
 import { GALLERY_ITEMS } from '../data/telecomData';
 
@@ -60,15 +60,6 @@ export const GalleryLightboxModal: React.FC<GalleryLightboxModalProps> = ({
           </div>
 
           <div className="flex items-center gap-3">
-            <a
-              href={selectedPhoto.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 hover:bg-white/10 rounded-lg text-on-surface-variant hover:text-white transition-colors"
-              title="Open full-resolution image"
-            >
-              <Download className="w-4 h-4" />
-            </a>
             <button
               onClick={onClose}
               className="p-2 hover:bg-white/10 rounded-lg text-on-surface-variant hover:text-white transition-colors cursor-pointer"
