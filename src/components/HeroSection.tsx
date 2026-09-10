@@ -1,6 +1,7 @@
 import React from 'react';
-import { Send, Radio } from 'lucide-react';
+import { Send, Radio, Sparkles, Activity } from 'lucide-react';
 import { TELECOM_IMAGES } from '../data/telecomData';
+import { useLanguage } from '../context/LanguageContext';
 
 interface HeroSectionProps {
   onContactClick: () => void;
@@ -11,6 +12,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   onContactClick,
   onOpenResume,
 }) => {
+  const { t } = useLanguage();
+
   return (
     <section id="about" className="relative w-full px-5 md:px-10 lg:px-20 pt-8 pb-16 overflow-hidden">
       {/* Ambient photonic atmospheric glows */}
@@ -25,18 +28,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             {/* Main Headline */}
             <div className="flex flex-col gap-1.5">
               <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl text-on-surface tracking-tight font-bold">
-                Paban{' '}
+                {t.hero.name.split(' ')[0]}{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#b4c5ff] via-[#4cd7f6] to-[#b4c5ff]">
-                  Nepali
+                  {t.hero.name.split(' ').slice(1).join(' ')}
                 </span>
               </h1>
               <p className="font-headline-sm text-lg sm:text-xl text-[#b4c5ff] font-medium leading-snug">
-                Professional Telecommunications Technician
+                {t.hero.role}
               </p>
             </div>
 
             <p className="font-body-lg text-base sm:text-lg text-on-surface-variant max-w-3xl leading-relaxed">
-              I’m a technology and telecom enthusiast passionate about connecting people, communities, and ideas through technology—contributing to Nepal’s digital growth while creating meaningful connections with the world. I specialize in architecting and deploying robust fiber-optic transport networks, high-reliability copper infrastructure, and carrier-grade BTS/OLT transmission systems across Nepal Telecom’s core urban zones and challenging mountainous terrains. My work sits at the intersection of resilient network engineering, connectivity, and innovation, with a focus on building reliable telecommunications infrastructure that enables communities, businesses, and the nation to stay connected.
+              {t.hero.summary}
             </p>
 
             {/* Hero CTAs */}
@@ -46,7 +49,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 className="px-6 py-3 bg-gradient-to-r from-primary-container to-blue-600 hover:to-secondary text-white font-body-md text-sm sm:text-base font-semibold rounded-xl shadow-[0_0_24px_rgba(37,99,235,0.45)] hover:shadow-[0_0_32px_rgba(76,215,246,0.6)] transition-all flex items-center gap-2 cursor-pointer active:scale-95"
               >
                 <Send className="w-4 h-4" />
-                Contact Me
+                {t.hero.ctaContact}
               </button>
             </div>
           </div>
@@ -83,6 +86,66 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             className="w-full h-48 md:h-64 lg:h-80 object-cover object-center group-hover:scale-[1.02] transition-transform duration-700"
             src={TELECOM_IMAGES.panoramicBanner}
           />
+        </div>
+
+        {/* Fiber Optics & Photonic Transport Showcase Card */}
+        <div className="relative w-full rounded-2xl overflow-hidden border border-secondary/30 bg-[#060d24] shadow-[0_12px_36px_rgba(76,215,246,0.15)] group">
+          {/* Fiber Optics Background Image with Optical Light Glow */}
+          <div className="absolute inset-0 z-0">
+            <img
+              src="/assets/fiber_optics_network.jpg"
+              alt="High-Density Fiber Optics Network"
+              className="w-full h-full object-cover object-center opacity-40 group-hover:opacity-50 transition-opacity duration-700 scale-100 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#060d24] via-[#060d24]/80 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#060d24] via-transparent to-transparent"></div>
+          </div>
+
+          <div className="relative z-10 p-6 md:p-10 flex flex-col gap-6 max-w-2xl">
+            <div className="flex items-center gap-2">
+              <span className="px-3 py-1 bg-secondary/15 border border-secondary/40 rounded-full font-tech-badge text-xs text-secondary flex items-center gap-1.5 shadow-[0_0_12px_rgba(76,215,246,0.3)]">
+                <Sparkles className="w-3.5 h-3.5" />
+                {t.fiberSpotlight.badge}
+              </span>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <h3 className="font-headline-sm text-2xl md:text-3xl text-white font-bold tracking-tight">
+                {t.fiberSpotlight.title}
+              </h3>
+              <p className="font-body-sm text-sm md:text-base text-on-surface-variant leading-relaxed">
+                {t.fiberSpotlight.description}
+              </p>
+            </div>
+
+            {/* Live Metrics Grid */}
+            <div className="grid grid-cols-3 gap-3 md:gap-6 pt-2 border-t border-primary/20">
+              <div className="flex flex-col">
+                <span className="font-tech-badge text-[10px] md:text-xs text-outline uppercase">
+                  {t.fiberSpotlight.metric1Label}
+                </span>
+                <span className="font-tech-badge text-base md:text-xl text-secondary font-bold">
+                  {t.fiberSpotlight.metric1Val}
+                </span>
+              </div>
+              <div className="flex flex-col">
+                <span className="font-tech-badge text-[10px] md:text-xs text-outline uppercase">
+                  {t.fiberSpotlight.metric2Label}
+                </span>
+                <span className="font-tech-badge text-base md:text-xl text-[#f5ba31] font-bold">
+                  {t.fiberSpotlight.metric2Val}
+                </span>
+              </div>
+              <div className="flex flex-col">
+                <span className="font-tech-badge text-[10px] md:text-xs text-outline uppercase">
+                  {t.fiberSpotlight.metric3Label}
+                </span>
+                <span className="font-tech-badge text-base md:text-xl text-primary font-bold">
+                  {t.fiberSpotlight.metric3Val}
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

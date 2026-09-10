@@ -1,8 +1,11 @@
 import React from 'react';
 import { Network, Cpu, ShieldCheck } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import { SKILL_CATEGORIES } from '../data/telecomData';
 
 export const ExpertiseSection: React.FC = () => {
+  const { t } = useLanguage();
+
   const getIcon = (iconName: string) => {
     switch (iconName) {
       case 'settings_ethernet':
@@ -15,6 +18,26 @@ export const ExpertiseSection: React.FC = () => {
     }
   };
 
+  const categories = SKILL_CATEGORIES.map((cat, idx) => {
+    let title = cat.title;
+    let subtitle = cat.subtitle;
+    if (idx === 0) {
+      title = t.expertise.categories.opticalTitle;
+      subtitle = t.expertise.categories.opticalSubtitle;
+    } else if (idx === 1) {
+      title = t.expertise.categories.hardwareTitle;
+      subtitle = t.expertise.categories.hardwareSubtitle;
+    } else if (idx === 2) {
+      title = t.expertise.categories.fieldTitle;
+      subtitle = t.expertise.categories.fieldSubtitle;
+    }
+    return {
+      ...cat,
+      title,
+      subtitle,
+    };
+  });
+
   return (
     <section id="expertise" className="w-full bg-[#0b1229] py-16 px-5 md:px-10 lg:px-20 relative">
       <div className="max-w-7xl mx-auto flex flex-col gap-10">
@@ -22,20 +45,19 @@ export const ExpertiseSection: React.FC = () => {
         <div className="flex flex-col gap-2 max-w-2xl">
           <span className="font-tech-badge text-xs text-secondary tracking-widest flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#4cd7f6]"></span>
-            OPERATIONAL CAPABILITIES
+            {t.expertise.badge}
           </span>
           <h2 className="font-headline-lg text-2xl sm:text-3xl lg:text-4xl text-on-surface font-semibold">
-            Technical Skills &amp; Core Competencies
+            {t.expertise.title}
           </h2>
           <p className="font-body-md text-sm sm:text-base text-on-surface-variant">
-            Comprehensive field and lab competence spanning optical transport physics, digital
-            switching, and high-stakes network survivability.
+            {t.expertise.subtitle}
           </p>
         </div>
 
         {/* 3 Column Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-          {SKILL_CATEGORIES.map((category) => {
+          {categories.map((category) => {
             const isSecondary = category.accentColor === 'secondary';
 
             return (

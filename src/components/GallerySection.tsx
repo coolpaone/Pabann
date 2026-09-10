@@ -1,25 +1,28 @@
 import React from 'react';
 import { GALLERY_ITEMS } from '../data/telecomData';
 import { GalleryItem } from '../types';
+import { useLanguage } from '../context/LanguageContext';
 
 interface GallerySectionProps {
   onSelectPhoto: (photo: GalleryItem) => void;
 }
 
 export const GallerySection: React.FC<GallerySectionProps> = ({ onSelectPhoto }) => {
+  const { t } = useLanguage();
+
   return (
     <section id="gallery" className="w-full bg-[#060d24] py-16 px-5 md:px-10 lg:px-20">
       <div className="max-w-7xl mx-auto flex flex-col gap-8">
-        {/* Clean Minimal Header (pure visual section boundary, zero overlays on grid) */}
+        {/* Clean Minimal Header */}
         <div className="flex items-center justify-between pb-2 border-b border-primary/10">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-secondary shadow-[0_0_10px_#4cd7f6]"></span>
             <span className="font-label-caps text-xs text-on-surface uppercase tracking-widest font-semibold">
-              Field &amp; Professional Gallery
+              {t.gallery.title}
             </span>
           </div>
           <span className="font-tech-badge text-xs text-outline font-medium">
-            [ 8 NODES ]
+            08 ARCHIVE NODES
           </span>
         </div>
 

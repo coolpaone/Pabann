@@ -1,9 +1,44 @@
 import React from 'react';
 import { ExternalLink, CheckCircle2 } from 'lucide-react';
-import { CAREER_EXPERIENCES } from '../data/telecomData';
 import { NepalTelecomLogo, ClassicTechLogo } from './CompanyLogos';
+import { useLanguage } from '../context/LanguageContext';
 
 export const ExperienceSection: React.FC = () => {
+  const { t } = useLanguage();
+
+  const experiences = [
+    {
+      id: 'ntc-technician',
+      role: t.experience.ntcRole,
+      company: t.experience.ntcCompany,
+      period: `2024 - ${t.experience.present}`,
+      roleType: t.experience.fullTimeRole,
+      location: 'Palpa, Nepal',
+      companyUrl: 'https://ntc.net.np',
+      summary: t.experience.ntcSummary,
+      highlights: t.experience.ntcHighlights,
+    },
+    {
+      id: 'classic-tech',
+      role: t.experience.classicRole,
+      company: t.experience.classicCompany,
+      period: '2023 - 2024',
+      roleType: t.experience.broadbandRole,
+      location: 'Kathmandu, Nepal',
+      companyUrl: 'https://classic.com.np',
+      highlights: t.experience.classicHighlights,
+    },
+    {
+      id: 'ntc-intern',
+      role: t.experience.assistantRole,
+      company: t.experience.assistantCompany,
+      period: '2022 - 2023',
+      roleType: t.experience.fieldOpsRole,
+      location: 'Kathmandu, Nepal',
+      highlights: t.experience.assistantHighlights,
+    },
+  ];
+
   return (
     <section id="experience" className="w-full bg-[#060d24] py-16 px-5 md:px-10 lg:px-20 relative">
       <div className="max-w-7xl mx-auto flex flex-col gap-10">
@@ -11,20 +46,19 @@ export const ExperienceSection: React.FC = () => {
         <div className="flex flex-col gap-2 max-w-2xl">
           <span className="font-tech-badge text-xs text-secondary tracking-widest flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#4cd7f6]"></span>
-            INFRASTRUCTURE TRACK RECORD
+            {t.experience.badge}
           </span>
           <h2 className="font-headline-lg text-2xl sm:text-3xl lg:text-4xl text-on-surface font-semibold">
-            Career Experience &amp; Deployment Milestones
+            {t.experience.title}
           </h2>
           <p className="font-body-md text-sm sm:text-base text-on-surface-variant">
-            Deploying and maintaining enterprise carrier backbone circuits, cellular base transceiver
-            stations, and municipal fiber optic distribution loops.
+            {t.experience.subtitle}
           </p>
         </div>
 
         {/* High-tech Connected Timeline */}
         <div className="relative flex flex-col gap-8 pl-6 sm:pl-10 before:absolute before:left-3 sm:before:left-5 before:top-4 before:bottom-4 before:w-0.5 before:bg-gradient-to-b before:from-secondary before:via-primary before:to-[#323851]">
-          {CAREER_EXPERIENCES.map((exp, index) => {
+          {experiences.map((exp, index) => {
             const isFirst = index === 0;
             const isSecond = index === 1;
 

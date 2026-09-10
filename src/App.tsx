@@ -14,6 +14,7 @@ import { Footer } from './components/Footer';
 import { GalleryLightboxModal } from './components/GalleryLightboxModal';
 import { ProfileResumeModal } from './components/ProfileResumeModal';
 import { GalleryItem } from './types';
+import { LanguageProvider } from './context/LanguageContext';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('about');
@@ -39,7 +40,7 @@ export default function App() {
   // Scroll listener to update active navigation item
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['about', 'experience', 'expertise', 'gallery', 'contact'];
+      const sections = ['about', 'experience', 'gallery', 'expertise', 'contact'];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -60,52 +61,54 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0b1229] text-[#dce1ff] font-body-md flex flex-col selection:bg-primary-container selection:text-white">
-      {/* Top Fixed Header */}
-      <Navbar
-        activeSection={activeSection}
-        onNavigate={handleNavigate}
-        onOpenResume={() => setResumeModalOpen(true)}
-      />
+    <LanguageProvider>
+      <div className="min-h-screen bg-[#0b1229] text-[#dce1ff] font-body-md flex flex-col selection:bg-primary-container selection:text-white">
+        {/* Top Fixed Header */}
+        <Navbar
+          activeSection={activeSection}
+          onNavigate={handleNavigate}
+          onOpenResume={() => setResumeModalOpen(true)}
+        />
 
-      {/* Main Content Area */}
-      <main className="w-full pt-20 bg-[#0b1229] flex-1">
-        <div className="flex flex-col w-full">
-          {/* Hero Section / Summary Profile */}
-          <HeroSection
-            onContactClick={() => handleNavigate('contact')}
-            onOpenResume={() => setResumeModalOpen(true)}
-          />
+        {/* Main Content Area */}
+        <main className="w-full pt-20 bg-[#0b1229] flex-1">
+          <div className="flex flex-col w-full">
+            {/* Hero Section / Summary Profile with Fiber Optics Transport Banner */}
+            <HeroSection
+              onContactClick={() => handleNavigate('contact')}
+              onOpenResume={() => setResumeModalOpen(true)}
+            />
 
-          {/* Career Experience & Deployment Milestones */}
-          <ExperienceSection />
+            {/* Career Experience & Deployment Milestones */}
+            <ExperienceSection />
 
-          {/* Field & Professional Photo Gallery */}
-          <GallerySection onSelectPhoto={(photo) => setSelectedPhoto(photo)} />
+            {/* Field & Professional Photo Gallery */}
+            <GallerySection onSelectPhoto={(photo) => setSelectedPhoto(photo)} />
 
-          {/* Technical Skills & Core Competencies */}
-          <ExpertiseSection />
+            {/* Technical Skills & Core Competencies */}
+            <ExpertiseSection />
 
-          {/* Contact & Direct Carrier Communication */}
-          <ContactSection />
-        </div>
-      </main>
+            {/* Contact & Direct Carrier Communication */}
+            <ContactSection />
+          </div>
+        </main>
 
-      {/* Footer */}
-      <Footer />
+        {/* Footer */}
+        <Footer />
 
-      {/* Photo Lightbox Modal */}
-      <GalleryLightboxModal
-        selectedPhoto={selectedPhoto}
-        onClose={() => setSelectedPhoto(null)}
-        onSelectPhoto={(photo) => setSelectedPhoto(photo)}
-      />
+        {/* Photo Lightbox Modal */}
+        <GalleryLightboxModal
+          selectedPhoto={selectedPhoto}
+          onClose={() => setSelectedPhoto(null)}
+          onSelectPhoto={(photo) => setSelectedPhoto(photo)}
+        />
 
-      {/* Printable / Downloadable Carrier Dossier Modal */}
-      <ProfileResumeModal
-        isOpen={resumeModalOpen}
-        onClose={() => setResumeModalOpen(false)}
-      />
-    </div>
+        {/* Printable / Downloadable Carrier Dossier Modal */}
+        <ProfileResumeModal
+          isOpen={resumeModalOpen}
+          onClose={() => setResumeModalOpen(false)}
+        />
+      </div>
+    </LanguageProvider>
   );
 }

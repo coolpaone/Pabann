@@ -6,100 +6,128 @@ interface LogoProps {
 }
 
 /**
- * Official Nepal Telecom Logo
- * Blue shield background with golden sacred Shankha (conch), telecom tower mast, and clean white branding.
+ * Official Nepal Telecom Original Emblem Logo
+ * Strictly rendered in its original form as uploaded:
+ * Pure royal blue background with the iconic golden Shankha (conch), lattice telecom tower,
+ * and Namaste foundation silhouette.
  */
 export const NepalTelecomLogo: React.FC<LogoProps> = ({ className = '', size = 'md' }) => {
   const dimensions = {
-    sm: { width: 36, height: 42 },
-    md: { width: 48, height: 56 },
-    lg: { width: 64, height: 75 },
+    sm: { width: 40, height: 46 },
+    md: { width: 56, height: 64 },
+    lg: { width: 78, height: 90 },
   }[size];
 
   return (
     <div
-      className={`inline-flex items-center justify-center rounded-xl overflow-hidden shadow-[0_4px_16px_rgba(0,56,141,0.5)] border border-blue-400/30 ${className}`}
+      className={`inline-flex items-center justify-center rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(6,84,156,0.6)] ${className}`}
       title="Nepal Telecom (नेपाल टेलिकम)"
       aria-label="Nepal Telecom Logo"
     >
       <svg
         width={dimensions.width}
         height={dimensions.height}
-        viewBox="0 0 160 185"
+        viewBox="0 0 360 410"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="shrink-0"
       >
-        {/* Royal Blue Background */}
-        <rect width="160" height="185" rx="14" fill="#004394" />
+        {/* Official Nepal Telecom Blue Background */}
+        <rect width="360" height="410" rx="16" fill="#06549c" />
 
-        {/* Top Sacred Stupa Finial & Spire */}
-        <circle cx="80" cy="22" r="5" fill="#f4be38" />
+        {/* Top Sacred Dot (Bindu) */}
+        <circle cx="180" cy="38" r="11" fill="#f4bc32" />
+
+        {/* Upper Crest Swirl */}
         <path
-          d="M 68 34 C 72 27, 88 27, 92 34 C 88 38, 72 38, 68 34 Z"
-          fill="#f4be38"
-        />
-        <path
-          d="M 60 44 C 66 36, 94 36, 100 44 C 94 48, 66 48, 60 44 Z"
-          fill="#f4be38"
+          d="M 152 70 C 158 52, 202 52, 214 70 C 198 78, 168 78, 152 70 Z"
+          fill="#f4bc32"
         />
 
-        {/* Golden Conch (Shankha) Swirl Frame */}
+        {/* Second Crest Ripple */}
         <path
-          d="M 79 50 
-             C 98 48, 116 57, 116 78 
-             C 116 99, 94 116, 73 147 
-             C 74 126, 98 107, 98 84 
-             C 98 67, 85 58, 72 58 
-             C 55 58, 44 72, 44 87 
-             C 44 98, 50 108, 64 113 
-             C 53 112, 38 102, 38 85 
-             C 38 64, 56 50, 79 50 Z"
-          fill="#f4be38"
+          d="M 134 98 C 144 76, 218 76, 230 98 C 210 108, 152 108, 134 98 Z"
+          fill="#f4bc32"
         />
 
-        {/* Golden Tower Spire & Namaste Silhouette inside Conch */}
-        {/* Mast Apex */}
-        <line x1="80" y1="56" x2="80" y2="70" stroke="#f4be38" strokeWidth="2.5" strokeLinecap="round" />
-        
-        {/* Lattice BTS Telecom Tower */}
+        {/* Outer Sacred Shankha (Conch Shell) Body */}
+        {/* Left Conch Wing */}
         <path
-          d="M 79 70 L 73 105 L 87 105 Z"
+          d="M 122 118 
+             C 100 135, 92 165, 92 205 
+             C 92 245, 108 275, 144 290 
+             C 112 280, 108 245, 108 205 
+             C 108 170, 114 145, 122 118 Z"
+          fill="#f4bc32"
+        />
+
+        {/* Right Conch Wing & Sweeping Graceful Tail */}
+        <path
+          d="M 218 116 
+             C 246 135, 266 170, 266 215 
+             C 266 260, 240 310, 196 355 
+             C 180 372, 168 395, 165 400 
+             C 168 385, 185 360, 202 335 
+             C 234 295, 250 255, 250 215 
+             C 250 175, 235 145, 218 116 Z"
+          fill="#f4bc32"
+        />
+
+        {/* Central Lattice Telecom Tower */}
+        {/* Apex Spire / Antenna */}
+        <path
+          d="M 180 120 L 180 152"
+          stroke="#f4bc32"
+          strokeWidth="3.5"
+          strokeLinecap="round"
+        />
+        {/* Tower Apex Needle Cone */}
+        <polygon points="180,118 178,138 182,138" fill="#f4bc32" />
+
+        {/* 4-Tier Lattice Tower Truss */}
+        <path
+          d="M 178 152 L 163 245 L 197 245 L 182 152 Z"
           fill="none"
-          stroke="#f4be38"
-          strokeWidth="2.5"
+          stroke="#f4bc32"
+          strokeWidth="3"
           strokeLinejoin="round"
         />
-        <line x1="75" y1="80" x2="85" y2="80" stroke="#f4be38" strokeWidth="2" />
-        <line x1="74" y1="92" x2="86" y2="92" stroke="#f4be38" strokeWidth="2" />
-        <line x1="76" y1="74" x2="84" y2="92" stroke="#f4be38" strokeWidth="1.5" />
-        <line x1="84" y1="74" x2="76" y2="92" stroke="#f4be38" strokeWidth="1.5" />
-        <line x1="74" y1="92" x2="86" y2="105" stroke="#f4be38" strokeWidth="1.5" />
-        <line x1="86" y1="92" x2="74" y2="105" stroke="#f4be38" strokeWidth="1.5" />
 
-        {/* Namaste Hands / Base Pedestal */}
+        {/* Cross Beams & Diagonal Braces */}
+        {/* Tier 1 */}
+        <line x1="176" y1="172" x2="184" y2="172" stroke="#f4bc32" strokeWidth="2.5" />
+        <line x1="178" y1="152" x2="184" y2="172" stroke="#f4bc32" strokeWidth="1.8" />
+        <line x1="182" y1="152" x2="176" y2="172" stroke="#f4bc32" strokeWidth="1.8" />
+
+        {/* Tier 2 */}
+        <line x1="173" y1="194" x2="187" y2="194" stroke="#f4bc32" strokeWidth="2.5" />
+        <line x1="176" y1="172" x2="187" y2="194" stroke="#f4bc32" strokeWidth="1.8" />
+        <line x1="184" y1="172" x2="173" y2="194" stroke="#f4bc32" strokeWidth="1.8" />
+
+        {/* Tier 3 */}
+        <line x1="168" y1="220" x2="192" y2="220" stroke="#f4bc32" strokeWidth="2.5" />
+        <line x1="173" y1="194" x2="192" y2="220" stroke="#f4bc32" strokeWidth="1.8" />
+        <line x1="187" y1="194" x2="168" y2="220" stroke="#f4bc32" strokeWidth="1.8" />
+
+        {/* Tier 4 */}
+        <line x1="168" y1="220" x2="197" y2="245" stroke="#f4bc32" strokeWidth="1.8" />
+        <line x1="192" y1="220" x2="163" y2="245" stroke="#f4bc32" strokeWidth="1.8" />
+
+        {/* Namaste / Pranam Base Foundation Hands */}
         <path
-          d="M 72 105 C 72 118, 66 128, 66 128 L 76 125 L 79 105 Z"
-          fill="#f4be38"
+          d="M 163 245 
+             C 163 268, 150 286, 150 286 
+             C 160 288, 172 278, 175 250 
+             L 163 245 Z"
+          fill="#f4bc32"
         />
         <path
-          d="M 88 105 C 88 118, 94 128, 94 128 L 84 125 L 81 105 Z"
-          fill="#f4be38"
+          d="M 197 245 
+             C 197 268, 210 286, 210 286 
+             C 200 288, 188 278, 185 250 
+             L 197 245 Z"
+          fill="#f4bc32"
         />
-
-        {/* White Text: "Nepal Telecom" */}
-        <text
-          x="80"
-          y="166"
-          fill="#ffffff"
-          fontSize="18"
-          fontWeight="bold"
-          fontFamily="system-ui, -apple-system, sans-serif"
-          textAnchor="middle"
-          letterSpacing="-0.2"
-        >
-          Nepal Telecom
-        </text>
       </svg>
     </div>
   );

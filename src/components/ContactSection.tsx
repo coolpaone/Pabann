@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Mail, Globe, MapPin, Home, Send, CheckCircle2, Satellite } from 'lucide-react';
 import { TELECOM_IMAGES } from '../data/telecomData';
+import { useLanguage } from '../context/LanguageContext';
 
 export const ContactSection: React.FC = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -34,14 +36,13 @@ export const ContactSection: React.FC = () => {
         <div className="flex flex-col gap-2 max-w-2xl">
           <span className="font-tech-badge text-xs text-secondary tracking-widest flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#4cd7f6]"></span>
-            DIRECT CARRIER COMMUNICATION
+            {t.contact.badge}
           </span>
           <h2 className="font-headline-lg text-2xl sm:text-3xl lg:text-4xl text-on-surface font-semibold">
-            Initiate Contact &amp; Inquiry
+            {t.contact.title}
           </h2>
           <p className="font-body-md text-sm sm:text-base text-on-surface-variant">
-            Available for telecommunication consulting, regional optical network deployments, BTS
-            site supervision, and critical transmission support across Nepal.
+            {t.contact.subtitle}
           </p>
         </div>
 
@@ -58,13 +59,13 @@ export const ContactSection: React.FC = () => {
               </div>
               <div className="flex flex-col">
                 <span className="font-headline-sm text-lg text-on-surface font-semibold">
-                  Paban Nepali
+                  {t.contact.profileName}
                 </span>
                 <span className="font-body-sm text-xs text-primary font-medium">
-                  Nepal Telecom
+                  {t.contact.profileCompany}
                 </span>
                 <span className="font-tech-badge text-xs text-secondary font-medium">
-                  Telecom Technician
+                  {t.contact.profileRole}
                 </span>
               </div>
             </div>
@@ -80,7 +81,7 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div className="flex flex-col min-w-0">
                   <span className="font-label-caps text-[10px] text-outline uppercase font-semibold">
-                    Official Email
+                    {t.contact.officialEmail}
                   </span>
                   <span className="font-tech-badge text-xs text-on-surface group-hover:text-secondary transition-colors truncate">
                     paban.nepali@ntc.net.np
@@ -100,7 +101,7 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div className="flex flex-col min-w-0">
                   <span className="font-label-caps text-[10px] text-outline uppercase font-semibold">
-                    Personal Portal
+                    {t.contact.personalPortal}
                   </span>
                   <span className="font-tech-badge text-xs text-on-surface group-hover:text-secondary transition-colors truncate">
                     www.pabannepali.com.np
@@ -130,7 +131,7 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div className="flex flex-col min-w-0">
                   <span className="font-label-caps text-[10px] text-outline uppercase font-semibold">
-                    Current Address
+                    Work / Location
                   </span>
                   <span className="font-body-md text-sm text-on-surface truncate">
                     Palpa, Nepal
@@ -149,7 +150,7 @@ export const ContactSection: React.FC = () => {
                     className="font-label-caps text-xs text-on-surface-variant uppercase font-semibold"
                     htmlFor="nameInput"
                   >
-                    Full Name / Organization
+                    {t.contact.inputName}
                   </label>
                   <input
                     className="w-full px-4 py-3 bg-[#060d24] text-on-surface placeholder:text-outline font-body-sm text-sm rounded-xl border border-outline/25 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-all"
@@ -167,7 +168,7 @@ export const ContactSection: React.FC = () => {
                     className="font-label-caps text-xs text-on-surface-variant uppercase font-semibold"
                     htmlFor="emailInput"
                   >
-                    Email Address
+                    {t.contact.inputEmail}
                   </label>
                   <input
                     className="w-full px-4 py-3 bg-[#060d24] text-on-surface placeholder:text-outline font-body-sm text-sm rounded-xl border border-outline/25 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-all"
@@ -186,7 +187,7 @@ export const ContactSection: React.FC = () => {
                   className="font-label-caps text-xs text-on-surface-variant uppercase font-semibold"
                   htmlFor="subjectInput"
                 >
-                  Subject / Project Category
+                  {t.contact.inputSubject}
                 </label>
                 <input
                   className="w-full px-4 py-3 bg-[#060d24] text-on-surface placeholder:text-outline font-body-sm text-sm rounded-xl border border-outline/25 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-all"
@@ -203,7 +204,7 @@ export const ContactSection: React.FC = () => {
                   className="font-label-caps text-xs text-on-surface-variant uppercase font-semibold"
                   htmlFor="messageInput"
                 >
-                  Transmission Message
+                  {t.contact.inputMessage}
                 </label>
                 <textarea
                   className="w-full px-4 py-3 bg-[#060d24] text-on-surface placeholder:text-outline font-body-sm text-sm rounded-xl border border-outline/25 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-all resize-none"
@@ -223,13 +224,13 @@ export const ContactSection: React.FC = () => {
                   className="px-6 py-3 bg-primary-container hover:bg-secondary text-white font-body-md text-sm sm:text-base font-semibold rounded-xl shadow-[0_0_24px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(76,215,246,0.6)] transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50"
                 >
                   <Satellite className={`w-4 h-4 ${isSending ? 'animate-spin' : ''}`} />
-                  {isSending ? 'Transmitting...' : 'Transmit Message'}
+                  {isSending ? t.contact.submitting : t.contact.submitButton}
                 </button>
 
                 {submitted && (
                   <div className="font-tech-badge text-xs text-secondary flex items-center gap-2 bg-secondary/10 px-3 py-1.5 rounded-lg border border-secondary/30">
                     <CheckCircle2 className="w-4 h-4 text-secondary" />
-                    TELEMETRY SENT SUCCESSFULLY
+                    {t.contact.successMessage}
                   </div>
                 )}
               </div>

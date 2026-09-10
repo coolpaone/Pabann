@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Menu, X, Radio, ArrowRight } from 'lucide-react';
+import { Menu, X, Radio, ArrowRight, Languages } from 'lucide-react';
 import { TELECOM_IMAGES } from '../data/telecomData';
 import { NepalFlag } from './NepalFlag';
+import { useLanguage } from '../context/LanguageContext';
 
 interface NavbarProps {
   activeSection: string;
@@ -15,13 +16,14 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenResume,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { language, toggleLanguage, t } = useLanguage();
 
   const navLinks = [
-    { id: 'about', label: 'About' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'gallery', label: 'Gallery' },
-    { id: 'expertise', label: 'Expertise' },
-    { id: 'contact', label: 'Contact' },
+    { id: 'about', label: t.nav.about },
+    { id: 'experience', label: t.nav.experience },
+    { id: 'gallery', label: t.nav.gallery },
+    { id: 'expertise', label: t.nav.expertise },
+    { id: 'contact', label: t.nav.contact },
   ];
 
   const handleNavClick = (id: string) => {
@@ -71,9 +73,23 @@ export const Navbar: React.FC<NavbarProps> = ({
         </nav>
 
         {/* Header Right Actions */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          {/* Translate Button: Positioned strictly to the left side of profile picture */}
+          <button
+            onClick={toggleLanguage}
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-surface-container hover:bg-surface-container-high border border-secondary/35 hover:border-secondary rounded-full font-tech-badge text-xs text-on-surface transition-all shadow-[0_0_12px_rgba(76,215,246,0.2)] cursor-pointer group"
+            title={t.nav.languageLabel}
+            aria-label={t.nav.languageLabel}
+          >
+            <Languages className="w-3.5 h-3.5 text-secondary group-hover:rotate-12 transition-transform shrink-0" />
+            <span className="font-semibold text-secondary">
+              {language === 'en' ? 'नेपाली' : 'English'}
+            </span>
+          </button>
+
+          {/* Profile Picture */}
           <div
-            className="flex items-center pl-1 group"
+            className="flex items-center pl-1 group shrink-0"
             title="Paban Nepali - Telecom Profile"
           >
             <img
@@ -86,7 +102,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Mobile Menu Trigger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-on-surface-variant hover:text-white rounded-lg hover:bg-surface-container"
+            className="lg:hidden p-2 text-on-surface-variant hover:text-white rounded-lg hover:bg-surface-container cursor-pointer"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -111,6 +127,16 @@ export const Navbar: React.FC<NavbarProps> = ({
               <ArrowRight className="w-4 h-4 opacity-60" />
             </button>
           ))}
+          <div className="pt-2 border-t border-outline/15 flex items-center justify-between">
+            <span className="text-xs text-on-surface-variant font-tech-badge">Language:</span>
+            <button
+              onClick={toggleLanguage}
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-surface-container border border-secondary/40 rounded-full font-tech-badge text-xs text-secondary"
+            >
+              <Languages className="w-3.5 h-3.5" />
+              <span>{language === 'en' ? 'नेपाली भाषामा हेर्नुहोस्' : 'Switch to English'}</span>
+            </button>
+          </div>
         </div>
       )}
     </header>
