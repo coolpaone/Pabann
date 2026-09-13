@@ -21,6 +21,13 @@ export const ProfileResumeModal: React.FC<ProfileResumeModalProps> = ({ isOpen, 
     window.print();
   };
 
+  const handleEmailClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const u = atob('cGFiYW4ubmVwYWxp');
+    const d = atob('bnRjLm5ldC5ucA==');
+    window.location.href = `mailto:${u}@${d}?subject=${encodeURIComponent('Official Technical Resume Inquiry')}`;
+  };
+
   return (
     <div
       className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 md:p-6 overflow-y-auto"
@@ -99,7 +106,13 @@ export const ProfileResumeModal: React.FC<ProfileResumeModalProps> = ({ isOpen, 
               </div>
               <div className="flex items-center md:justify-end gap-2">
                 <Mail className="w-3.5 h-3.5 text-primary" />
-                <span>paban.nepali@ntc.net.np</span>
+                <button
+                  onClick={handleEmailClick}
+                  type="button"
+                  className="text-secondary hover:text-cyan-300 underline underline-offset-2 transition-colors cursor-pointer text-left"
+                >
+                  Send Official Email
+                </button>
               </div>
               <div className="flex items-center md:justify-end gap-2">
                 <Globe className="w-3.5 h-3.5 text-secondary" />

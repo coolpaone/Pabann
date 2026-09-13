@@ -93,6 +93,7 @@ export interface Translations {
     profileCompany: string;
     profileRole: string;
     officialEmail: string;
+    sendEmailButton: string;
     personalPortal: string;
     homeLabel: string;
     workLabel: string;
@@ -244,6 +245,7 @@ export const TRANSLATIONS: Record<'en' | 'ne', Translations> = {
       profileCompany: 'Nepal Telecom',
       profileRole: 'Telecom Technician',
       officialEmail: 'OFFICIAL EMAIL',
+      sendEmailButton: 'Send Email',
       personalPortal: 'PERSONAL PORTAL',
       homeLabel: 'HOME ADDRESS',
       workLabel: 'CURRENT RESIDENCE',
@@ -393,6 +395,7 @@ export const TRANSLATIONS: Record<'en' | 'ne', Translations> = {
       profileCompany: 'नेपाल टेलिकम',
       profileRole: 'दूरसञ्चार प्राविधिक',
       officialEmail: 'आधिकारिक इमेल',
+      sendEmailButton: 'इमेल पठाउनुहोस्',
       personalPortal: 'व्यक्तिगत पोर्टल',
       homeLabel: 'स्थायी ठेगाना',
       workLabel: 'हालको बसोबास',

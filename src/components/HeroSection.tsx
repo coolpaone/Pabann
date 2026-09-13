@@ -1,5 +1,5 @@
 import React from 'react';
-import { Send, Radio, Sparkles, Activity } from 'lucide-react';
+import { Sparkles, Activity } from 'lucide-react';
 import { TELECOM_IMAGES } from '../data/telecomData';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -41,17 +41,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <p className="font-body-lg text-base sm:text-lg text-on-surface-variant max-w-3xl leading-relaxed">
               {t.hero.summary}
             </p>
-
-            {/* Hero CTAs */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
-              <button
-                onClick={onContactClick}
-                className="px-6 py-3 bg-gradient-to-r from-primary-container to-blue-600 hover:to-secondary text-white font-body-md text-sm sm:text-base font-semibold rounded-xl shadow-[0_0_24px_rgba(37,99,235,0.45)] hover:shadow-[0_0_32px_rgba(76,215,246,0.6)] transition-all flex items-center gap-2 cursor-pointer active:scale-95"
-              >
-                <Send className="w-4 h-4" />
-                {t.hero.ctaContact}
-              </button>
-            </div>
           </div>
 
           {/* Right Column: Hero Feature Spotlight Image (IMAGE_7) */}
@@ -63,17 +52,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 className="w-full h-80 lg:h-96 object-cover object-center group-hover:scale-105 transition-transform duration-700"
                 src={TELECOM_IMAGES.heroSpotlight}
               />
-              <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between p-3.5 bg-[#060d24]/85 backdrop-blur-md rounded-xl border border-secondary/20 shadow-lg">
-                <div className="flex flex-col">
-                  <span className="font-tech-badge text-[11px] text-secondary tracking-wider font-semibold">
-                    TELECOM TRANSMISSION NODE
-                  </span>
-                  <span className="font-headline-sm text-base text-on-surface font-semibold">
-                    Nepal Telecom Core
-                  </span>
-                </div>
-                <Radio className="w-6 h-6 text-secondary animate-pulse" />
-              </div>
             </div>
           </div>
         </div>

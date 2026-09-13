@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
+import { BackToTopMobile } from './components/BackToTopMobile';
 import { GalleryLightboxModal } from './components/GalleryLightboxModal';
 import { ProfileResumeModal } from './components/ProfileResumeModal';
 import { GalleryItem } from './types';
@@ -95,6 +96,9 @@ function PortfolioContent() {
 
       {/* Footer */}
       <Footer />
+
+      {/* Mobile-Only Go to Top Floating Button */}
+      <BackToTopMobile />
 
       {/* Photo Lightbox Modal */}
       <GalleryLightboxModal

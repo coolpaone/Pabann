@@ -54,6 +54,15 @@ export const ContactSection: React.FC = () => {
     }
   };
 
+  const handleOpenMailApp = (e: React.MouseEvent) => {
+    e.preventDefault();
+    // Reconstruct obfuscated email address dynamically on click so it is never exposed in plain text on the website
+    const u = atob('cGFiYW4ubmVwYWxp'); // 'paban.nepali'
+    const d = atob('bnRjLm5ldC5ucA==');   // 'ntc.net.np'
+    const email = `${u}@${d}`;
+    window.location.href = `mailto:${email}?subject=${encodeURIComponent('Technical Inquiry / Network Communication')}`;
+  };
+
   return (
     <section id="contact" className="w-full bg-[#0b1229] py-16 px-5 md:px-10 lg:px-20 relative">
       <div className="max-w-7xl mx-auto flex flex-col gap-10">
@@ -101,23 +110,27 @@ export const ContactSection: React.FC = () => {
 
             {/* 4 Stacked Full-Width Information Cards */}
             <div className="flex flex-col gap-3.5">
-              {/* 1. Official Email */}
-              <a
-                className="p-4 bg-[#050917] rounded-xl flex items-center gap-4 hover:bg-[#081028] transition-colors group border border-[#1c2848]"
-                href="mailto:paban.nepali@ntc.net.np"
+              {/* 1. Official Email - Glowing Send Email Button (Protects address from exposure) */}
+              <button
+                id="contact-section-official-email-btn"
+                type="button"
+                onClick={handleOpenMailApp}
+                aria-label="Send Email to Official Telecom Contact"
+                className="w-full p-4 bg-gradient-to-r from-[#3151f1] via-[#3b82f6] to-[#4cd7f6] hover:from-[#2546e8] hover:via-[#2563eb] hover:to-[#38bdf8] text-white rounded-xl flex items-center gap-4 shadow-[0_0_24px_rgba(49,81,241,0.5)] hover:shadow-[0_0_36px_rgba(76,215,246,0.7)] transition-all group cursor-pointer active:scale-[0.98] border border-cyan-300/40 text-left"
               >
-                <div className="w-12 h-12 rounded-xl bg-[#141d38] flex items-center justify-center text-[#7ea1dd] group-hover:text-secondary transition-colors shrink-0 border border-[#1e2d4e]">
-                  <Mail className="w-5 h-5" />
+                <div className="w-12 h-12 rounded-xl bg-white/15 backdrop-blur-md flex items-center justify-center text-white shrink-0 border border-white/25 group-hover:scale-110 transition-transform shadow-inner">
+                  <Mail className="w-5 h-5 text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.8)]" />
                 </div>
                 <div className="flex flex-col min-w-0">
-                  <span className="font-mono text-[10px] sm:text-[11px] text-[#7a8ba8] tracking-[0.14em] uppercase font-semibold">
+                  <span className="font-mono text-[10px] sm:text-[11px] text-cyan-100/90 tracking-[0.14em] uppercase font-semibold">
                     {t.contact.officialEmail}
                   </span>
-                  <span className="font-mono text-xs sm:text-sm text-white group-hover:text-secondary transition-colors truncate">
-                    paban.nepali@ntc.net.np
+                  <span className="font-headline-sm text-sm sm:text-base text-white font-bold tracking-wide flex items-center gap-1.5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
+                    {t.contact.sendEmailButton}
+                    <Send className="w-3.5 h-3.5 text-cyan-100 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform" />
                   </span>
                 </div>
-              </a>
+              </button>
 
               {/* 2. Personal Portal */}
               <a
