@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface LogoProps {
   className?: string;
@@ -7,16 +7,35 @@ interface LogoProps {
 
 /**
  * Official Nepal Telecom Original Emblem Logo
- * Strictly rendered in its original form as uploaded:
- * Pure royal blue background with the iconic golden Shankha (conch), lattice telecom tower,
- * and Namaste foundation silhouette.
+ * Stored locally at /assets/nepal_telecom_logo.jpg so that remote removals never affect the site.
+ * Includes automatic fallback to high-precision vector SVG emblem.
  */
 export const NepalTelecomLogo: React.FC<LogoProps> = ({ className = '', size = 'md' }) => {
+  const [imageError, setImageError] = useState(false);
+
   const dimensions = {
-    sm: { width: 40, height: 46 },
-    md: { width: 56, height: 64 },
-    lg: { width: 78, height: 90 },
+    sm: { width: 40, height: 46, imgHeight: 'h-10' },
+    md: { width: 56, height: 64, imgHeight: 'h-14' },
+    lg: { width: 78, height: 90, imgHeight: 'h-20' },
   }[size];
+
+  if (!imageError) {
+    return (
+      <div
+        className={`inline-flex items-center justify-center rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(6,84,156,0.5)] bg-[#06549c] p-1 border border-[#06549c]/40 ${className}`}
+        title="Nepal Telecom (नेपाल टेलिकम)"
+        aria-label="Nepal Telecom Logo"
+      >
+        <img
+          src="/assets/nepal_telecom_logo.jpg"
+          alt="Nepal Telecom Logo"
+          onError={() => setImageError(true)}
+          className={`${dimensions.imgHeight} w-auto object-contain rounded-lg`}
+          loading="lazy"
+        />
+      </div>
+    );
+  }
 
   return (
     <div

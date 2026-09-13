@@ -64,9 +64,34 @@ function aistudioMediaPlugin(): Plugin {
 }
 // LINT.ThenChange(//depot/google3/java/com/google/alkali/boq/makersuite/applet_dev_service/templates/initializers/react_theme/vite.config.ts:aistudio_media_plugin)
 
+// Dev server middleware to handle /api/contact locally
+function apiContactDevPlugin(): Plugin {
+  return {
+    name: 'vite-plugin-api-contact',
+    configureServer(server) {
+      server.middlewares.use(async (req, res, next) => {
+        const pathname = req.url ? req.url.split('?')[0] : '';
+        if (pathname === '/api/contact') {
+          try {
+            const { default: handler } = await import('./api/contact.ts');
+            await handler(req, res);
+          } catch (err) {
+            console.error('API /api/contact dev error:', err);
+            res.statusCode = 500;
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({ success: false, error: 'Internal dev server error' }));
+          }
+          return;
+        }
+        next();
+      });
+    },
+  };
+}
+
 export default defineConfig(() => {
   return {
-    plugins: [react(), tailwindcss(), aistudioMediaPlugin()],
+    plugins: [react(), tailwindcss(), aistudioMediaPlugin(), apiContactDevPlugin()],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),

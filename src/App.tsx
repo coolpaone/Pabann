@@ -41,7 +41,7 @@ function PortfolioContent() {
   // Scroll listener to update active navigation item
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['about', 'experience', 'gallery', 'expertise', 'contact'];
+      const sections = ['about', 'gallery', 'experience', 'expertise', 'contact'];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -79,11 +79,11 @@ function PortfolioContent() {
             onOpenResume={() => setResumeModalOpen(true)}
           />
 
-          {/* Career Experience & Deployment Milestones */}
-          <ExperienceSectionPrototype />
-
           {/* Field & Professional Photo Gallery */}
           <GallerySectionPrototype onSelectPhoto={(photo) => setSelectedPhoto(photo)} />
+
+          {/* Career Experience & Deployment Milestones */}
+          <ExperienceSectionPrototype />
 
           {/* Technical Skills & Core Competencies */}
           <ExpertiseSectionPrototype />

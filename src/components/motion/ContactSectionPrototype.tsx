@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Globe, MapPin, Home, Send, CheckCircle2, Satellite } from 'lucide-react';
+import { Mail, Globe, MapPin, Home, Send, CheckCircle2, Satellite, AlertCircle } from 'lucide-react';
 import { TELECOM_IMAGES } from '../../data/telecomData';
 import { useLanguage } from '../../context/LanguageContext';
 import { ScrollHeading, ScrollParagraph, ScrollImage, ScrollCard } from './ScrollReveal';
@@ -11,23 +11,48 @@ export const ContactSectionPrototype: React.FC = () => {
     email: '',
     subject: '',
     message: '',
+    hp: '',
   });
   const [submitted, setSubmitted] = useState(false);
   const [isSending, setIsSending] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim() || isSending) {
+      return;
+    }
 
     setIsSending(true);
-    setTimeout(() => {
-      setIsSending(false);
+    setErrorMessage(null);
+    setSubmitted(false);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || t.contact.errorMessage);
+      }
+
       setSubmitted(true);
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      setFormData({ name: '', email: '', subject: '', message: '', hp: '' });
       setTimeout(() => {
-        // keep submitted visible for a bit
-      }, 5000);
-    }, 800);
+        setSubmitted(false);
+      }, 7000);
+    } catch (err: any) {
+      console.error('Contact submission error:', err);
+      setErrorMessage(err.message || t.contact.errorMessage);
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -65,16 +90,19 @@ export const ContactSectionPrototype: React.FC = () => {
                       src={TELECOM_IMAGES.contactAvatar}
                     />
                   </div>
-                  <div className="flex flex-col">
-                    <span className="font-headline-sm text-lg sm:text-xl text-white font-semibold">
+                  <div className="flex flex-col gap-1 justify-center">
+                    <span className="font-headline-sm text-xl sm:text-2xl text-white font-bold tracking-tight leading-none">
                       {t.contact.profileName}
                     </span>
-                    <span className="font-body-sm text-xs sm:text-sm text-[#4361ee] font-medium">
-                      {t.contact.profileCompany}
-                    </span>
-                    <span className="font-mono text-xs sm:text-sm text-secondary font-medium">
-                      {t.contact.profileRole}
-                    </span>
+                    <div className="flex items-center gap-2 pt-0.5">
+                      <span className="font-body-md text-sm sm:text-base text-[#60a5fa] font-semibold tracking-wide">
+                        {t.contact.profileCompany}
+                      </span>
+                      <span className="w-1 h-1 rounded-full bg-[#475569]"></span>
+                      <span className="font-tech-badge text-[11px] sm:text-xs text-[#38bdf8] font-medium tracking-wider uppercase px-2 py-0.5 rounded-full bg-[#0369a1]/20 border border-[#0284c7]/30">
+                        {t.contact.profileRole}
+                      </span>
+                    </div>
                   </div>
                 </div>
 
@@ -230,6 +258,18 @@ export const ContactSectionPrototype: React.FC = () => {
                     />
                   </div>
 
+                  {/* Anti-spam honeypot (hidden from human visitors) */}
+                  <input
+                    type="text"
+                    name="_trap_field"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={formData.hp}
+                    onChange={(e) => setFormData({ ...formData, hp: e.target.value })}
+                    className="hidden"
+                    aria-hidden="true"
+                  />
+
                   <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
                     <button
                       disabled={isSending}
@@ -244,6 +284,13 @@ export const ContactSectionPrototype: React.FC = () => {
                       <div className="font-mono text-xs text-secondary flex items-center gap-2 bg-[#050917] px-4 py-2.5 rounded-xl border border-secondary/30 animate-pulse">
                         <CheckCircle2 className="w-4 h-4 text-secondary shrink-0" />
                         <span>{t.contact.successMessage}</span>
+                      </div>
+                    )}
+
+                    {errorMessage && (
+                      <div className="font-mono text-xs text-[#ff6b6b] flex items-center gap-2 bg-[#190a14] px-4 py-2.5 rounded-xl border border-[#ff6b6b]/40">
+                        <AlertCircle className="w-4 h-4 text-[#ff6b6b] shrink-0" />
+                        <span>{errorMessage}</span>
                       </div>
                     )}
                   </div>

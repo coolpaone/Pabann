@@ -130,7 +130,7 @@ export const ExperienceSection: React.FC = () => {
                     </span>
                   </div>
                   <div className="shrink-0 self-start sm:self-center">
-                    {exp.id === 'ntc-technician' && <NepalTelecomLogo size="md" />}
+                    {(exp.id === 'ntc-technician' || exp.id === 'ntc-assistant' || exp.id === 'ntc-intern') && <NepalTelecomLogo size="md" />}
                     {exp.id === 'classic-tech' && <ClassicTechLogo size="md" />}
                   </div>
                 </div>

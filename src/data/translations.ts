@@ -108,6 +108,7 @@ export interface Translations {
     submitButton: string;
     submitting: string;
     successMessage: string;
+    errorMessage: string;
   };
   footer: {
     description: string;
@@ -237,15 +238,15 @@ export const TRANSLATIONS: Record<'en' | 'ne', Translations> = {
     },
     contact: {
       badge: 'DISPATCH CONSOLE',
-      title: 'Mission-Critical Telecom Console',
+      title: 'Direct Communication and Contact Console',
       subtitle: 'Establish direct communication for technical field consults, optical transport deployments, or carrier network escalations.',
       profileName: 'Paban Nepali',
       profileCompany: 'Nepal Telecom',
       profileRole: 'Telecom Technician',
       officialEmail: 'OFFICIAL EMAIL',
       personalPortal: 'PERSONAL PORTAL',
-      homeLabel: 'HOME',
-      workLabel: 'WORK / LOCATION',
+      homeLabel: 'HOME ADDRESS',
+      workLabel: 'CURRENT RESIDENCE',
       directContactNumber: 'Direct Contact Number',
       locationLabel: 'Base Stations & Locations',
       locationValue: 'Home: Gorkha, Nepal | Work: Palpa, Nepal',
@@ -257,7 +258,8 @@ export const TRANSLATIONS: Record<'en' | 'ne', Translations> = {
       inputMessage: 'OPERATIONAL BRIEF OR TECHNICAL MESSAGE',
       submitButton: 'Transmit Message',
       submitting: 'Transmitting Message...',
-      successMessage: 'Transmission successfully delivered to Paban Nepali. We will respond promptly.',
+      successMessage: 'Thanks! Your message has been sent successfully.',
+      errorMessage: 'Something went wrong. Please try again.',
     },
     footer: {
       description: 'Professional Telecommunications Technician specializing in resilient optical fiber transport, carrier-grade OLT/BTS systems, and enterprise connectivity across Nepal.',
@@ -392,11 +394,11 @@ export const TRANSLATIONS: Record<'en' | 'ne', Translations> = {
       profileRole: 'दूरसञ्चार प्राविधिक',
       officialEmail: 'आधिकारिक इमेल',
       personalPortal: 'व्यक्तिगत पोर्टल',
-      homeLabel: 'गृह जिल्ला',
-      workLabel: 'कार्यक्षेत्र / स्थान',
+      homeLabel: 'स्थायी ठेगाना',
+      workLabel: 'हालको बसोबास',
       directContactNumber: 'प्रत्यक्ष सम्पर्क नम्बर',
       locationLabel: 'आधार स्टेसन तथा स्थान',
-      locationValue: 'घर: गोरखा, नेपाल | कार्यक्षेत्र: पाल्पा, नेपाल',
+      locationValue: 'स्थायी: गोरखा, नेपाल | हाल: पाल्पा, नेपाल',
       formTitle: 'प्रत्यक्ष सन्देश पठाउनुहोस्',
       formSubtitle: 'प्राविधिक कन्सोलमा सिधै सुरक्षित सन्देश सम्प्रेषण गर्नुहोस्।',
       inputName: 'पूरा नाम / संस्था',
@@ -405,7 +407,8 @@ export const TRANSLATIONS: Record<'en' | 'ne', Translations> = {
       inputMessage: 'प्राविधिक विवरण वा सन्देश',
       submitButton: 'सन्देश सम्प्रेषण गर्नुहोस्',
       submitting: 'सन्देश पठाउँदै...',
-      successMessage: 'तपाईँको सन्देश पवन नेपालीलाई सफलतापूर्वक प्राप्त भयो। छिट्टै प्रतिक्रिया दिइनेछ।',
+      successMessage: 'धन्यवाद! तपाईँको सन्देश सफलतापूर्वक पठाइयो।',
+      errorMessage: 'केही समस्या आयो। कृपया पुन: प्रयास गर्नुहोस्।',
     },
     footer: {
       description: 'भरपर्दो अप्टिकल फाइबर ट्रान्सपोर्ट, क्यारियर-ग्रेड OLT/BTS प्रणाली र इन्टरप्राइज कनेक्टिभिटीमा समर्पित व्यावसायिक दूरसञ्चार प्राविधिक।',

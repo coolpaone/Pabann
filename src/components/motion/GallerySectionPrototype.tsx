@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { ChevronUp, ChevronDown, Maximize2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { GALLERY_ITEMS } from '../../data/telecomData';
 import { GalleryItem } from '../../types';
@@ -15,8 +15,8 @@ export const GallerySectionPrototype: React.FC<GallerySectionProps> = ({ onSelec
   const [mobileIndex, setMobileIndex] = useState(0);
   const [slideDirection, setSlideDirection] = useState<1 | -1>(1);
 
-  const touchStartY = useRef<number | null>(null);
   const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
 
   const totalPhotos = GALLERY_ITEMS.length;
   const currentMobilePhoto = GALLERY_ITEMS[mobileIndex];
@@ -32,30 +32,30 @@ export const GallerySectionPrototype: React.FC<GallerySectionProps> = ({ onSelec
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartY.current = e.touches[0].clientY;
     touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartY.current === null) return;
-    const touchEndY = e.changedTouches[0].clientY;
+    if (touchStartX.current === null || touchStartY.current === null) return;
     const touchEndX = e.changedTouches[0].clientX;
-    const deltaY = touchStartY.current - touchEndY;
+    const touchEndY = e.changedTouches[0].clientY;
     const deltaX = touchStartX.current - touchEndX;
+    const deltaY = touchStartY.current - touchEndY;
 
-    // Trigger vertical swipe if vertical motion exceeds 40px and is greater than horizontal motion
-    if (Math.abs(deltaY) > 40 && Math.abs(deltaY) > Math.abs(deltaX)) {
-      if (deltaY > 0) {
-        // Swiped UP -> Go to next photo
+    // Trigger horizontal swipe if horizontal motion exceeds 35px and is greater than vertical motion
+    if (Math.abs(deltaX) > 35 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      if (deltaX > 0) {
+        // Swiped LEFT -> Go to next photo
         handleNext();
       } else {
-        // Swiped DOWN -> Go to previous photo
+        // Swiped RIGHT -> Go to previous photo
         handlePrev();
       }
     }
 
-    touchStartY.current = null;
     touchStartX.current = null;
+    touchStartY.current = null;
   };
 
   return (
@@ -76,13 +76,13 @@ export const GallerySectionPrototype: React.FC<GallerySectionProps> = ({ onSelec
           </div>
         </ScrollHeading>
 
-        {/* 1. MOBILE VERTICAL SWIPE GALLERY (sm:hidden) */}
-        {/* Features vertical touch swipe, up/down buttons, 1/8 column counter, and tap-to-expand */}
+        {/* 1. MOBILE HORIZONTAL SWIPE GALLERY (sm:hidden) */}
+        {/* Features horizontal touch swipe, left/right buttons, slide indicator dots, and tap-to-expand */}
         <div className="block sm:hidden w-full">
           <div
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
-            className="relative w-full h-[460px] rounded-2xl overflow-hidden bg-[#050917] border border-[#1e2d4e] shadow-[0_15px_40px_rgba(0,0,0,0.6)] flex flex-col select-none touch-pan-x"
+            className="relative w-full h-[460px] rounded-2xl overflow-hidden bg-[#050917] border border-[#1e2d4e] shadow-[0_15px_40px_rgba(0,0,0,0.6)] flex flex-col select-none touch-pan-y"
           >
             {/* Top Overlay: Counter Pill "1 / 8" & Quick Action */}
             <div className="absolute top-3 inset-x-3 z-20 flex items-center justify-between pointer-events-none">
@@ -103,7 +103,7 @@ export const GallerySectionPrototype: React.FC<GallerySectionProps> = ({ onSelec
               </button>
             </div>
 
-            {/* Vertical Animated Image Viewport */}
+            {/* Horizontal Animated Image Viewport */}
             <div
               className="relative w-full h-full flex items-center justify-center cursor-pointer overflow-hidden"
               onClick={() => onSelectPhoto(currentMobilePhoto)}
@@ -113,20 +113,20 @@ export const GallerySectionPrototype: React.FC<GallerySectionProps> = ({ onSelec
                   key={currentMobilePhoto.id}
                   custom={slideDirection}
                   initial={{
-                    y: slideDirection > 0 ? 80 : -80,
+                    x: slideDirection > 0 ? 100 : -100,
                     opacity: 0,
-                    scale: 0.95,
+                    scale: 0.96,
                   }}
                   animate={{
-                    y: 0,
+                    x: 0,
                     opacity: 1,
                     scale: 1,
                     transition: { duration: 0.32, ease: [0.22, 1, 0.36, 1] },
                   }}
                   exit={{
-                    y: slideDirection > 0 ? -80 : 80,
+                    x: slideDirection > 0 ? -100 : 100,
                     opacity: 0,
-                    scale: 0.95,
+                    scale: 0.96,
                     transition: { duration: 0.24, ease: [0.22, 1, 0.36, 1] },
                   }}
                   className="absolute inset-0 w-full h-full"
@@ -141,56 +141,61 @@ export const GallerySectionPrototype: React.FC<GallerySectionProps> = ({ onSelec
               </AnimatePresence>
             </div>
 
-            {/* Right Side Controls: Vertical Swipe Arrows & Dot Navigation */}
-            <div className="absolute right-3 top-1/2 -translate-y-1/2 z-20 flex flex-col items-center gap-2">
-              <button
-                type="button"
-                onClick={handlePrev}
-                className="w-9 h-9 rounded-full bg-[#0c142c]/90 backdrop-blur-md border border-[#1e2d4e] text-white hover:text-secondary active:scale-95 flex items-center justify-center shadow-lg transition-all"
-                aria-label="Previous photo"
-              >
-                <ChevronUp className="w-4 h-4" />
-              </button>
+            {/* Left/Right Horizontal Navigation Arrows */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                handlePrev();
+              }}
+              className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-[#0c142c]/85 backdrop-blur-md border border-[#1e2d4e] text-white hover:text-secondary active:scale-95 flex items-center justify-center shadow-lg transition-all"
+              aria-label="Previous photo"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
 
-              {/* 8-Node Vertical Indicator Dots */}
-              <div className="flex flex-col items-center gap-1.5 py-1 px-1 bg-[#0c142c]/75 backdrop-blur-md rounded-full border border-[#1e2d4e]/70">
-                {GALLERY_ITEMS.map((item, idx) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    onClick={() => {
-                      setSlideDirection(idx > mobileIndex ? 1 : -1);
-                      setMobileIndex(idx);
-                    }}
-                    className={`transition-all rounded-full ${
-                      idx === mobileIndex
-                        ? 'w-1.5 h-3.5 bg-secondary shadow-[0_0_6px_#4cd7f6]'
-                        : 'w-1.5 h-1.5 bg-white/30 hover:bg-white/60'
-                    }`}
-                    aria-label={`Go to photo ${idx + 1}`}
-                  />
-                ))}
-              </div>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleNext();
+              }}
+              className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-[#0c142c]/85 backdrop-blur-md border border-[#1e2d4e] text-white hover:text-secondary active:scale-95 flex items-center justify-center shadow-lg transition-all"
+              aria-label="Next photo"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
 
-              <button
-                type="button"
-                onClick={handleNext}
-                className="w-9 h-9 rounded-full bg-[#0c142c]/90 backdrop-blur-md border border-[#1e2d4e] text-white hover:text-secondary active:scale-95 flex items-center justify-center shadow-lg transition-all"
-                aria-label="Next photo"
-              >
-                <ChevronDown className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* Bottom Caption Bar */}
-            <div className="absolute bottom-0 inset-x-0 z-20 p-4 bg-gradient-to-t from-[#050917] via-[#050917]/80 to-transparent pointer-events-none">
+            {/* Bottom Caption Bar and Horizontal Dots */}
+            <div className="absolute bottom-0 inset-x-0 z-20 p-4 bg-gradient-to-t from-[#050917] via-[#050917]/85 to-transparent flex flex-col gap-2 pointer-events-none">
               <div className="flex items-center justify-between">
                 <span className="font-body-sm text-xs text-white/90 line-clamp-1 font-medium">
                   {currentMobilePhoto.alt}
                 </span>
                 <span className="font-mono text-[10px] text-secondary tracking-wider uppercase shrink-0 pl-2">
-                  ↕ SWIPE VERTICAL
+                  ⇄ SWIPE
                 </span>
+              </div>
+
+              {/* 8-Node Horizontal Indicator Dots */}
+              <div className="flex items-center justify-center gap-1.5 pt-1 pointer-events-auto">
+                {GALLERY_ITEMS.map((item, idx) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSlideDirection(idx > mobileIndex ? 1 : -1);
+                      setMobileIndex(idx);
+                    }}
+                    className={`transition-all rounded-full ${
+                      idx === mobileIndex
+                        ? 'w-4 h-1.5 bg-secondary shadow-[0_0_6px_#4cd7f6]'
+                        : 'w-1.5 h-1.5 bg-white/30 hover:bg-white/60'
+                    }`}
+                    aria-label={`Go to photo ${idx + 1}`}
+                  />
+                ))}
               </div>
             </div>
           </div>

@@ -140,7 +140,7 @@ export const ProfileResumeModal: React.FC<ProfileResumeModalProps> = ({ isOpen, 
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
-                      {exp.id === 'ntc-technician' && <NepalTelecomLogo size="sm" />}
+                      {(exp.id === 'ntc-technician' || exp.id === 'ntc-assistant') && <NepalTelecomLogo size="sm" />}
                       {exp.id === 'classic-tech' && <ClassicTechLogo size="sm" />}
                       <span className="font-tech-badge text-xs text-secondary bg-surface-container px-2.5 py-1 rounded">
                         {exp.period}
