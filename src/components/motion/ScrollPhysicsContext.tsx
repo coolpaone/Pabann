@@ -85,11 +85,11 @@ export const ScrollPhysicsProvider: React.FC<{ children: React.ReactNode }> = ({
     };
   }, []);
 
-  // Preset physics tuning
+  // Preset physics tuning optimized for ultra-smooth 60/120fps motion without lag
   const springConfig = {
-    cinematic: { damping: 24, stiffness: 140, mass: 0.9 }, // Smooth, weighted, continuous
-    snappy: { damping: 28, stiffness: 220, mass: 0.6 },    // Fast developer portfolio style
-    subtle: { damping: 30, stiffness: 110, mass: 1.0 },    // Gentle, quiet motion
+    cinematic: { damping: 28, stiffness: 100, mass: 0.8 }, // Ultra-smooth, fluid, buttery continuous motion
+    snappy: { damping: 26, stiffness: 180, mass: 0.6 },    // Responsive yet smooth
+    subtle: { damping: 32, stiffness: 90, mass: 0.9 },     // Gentle, quiet fluid motion
   }[preset];
 
   return (

@@ -118,22 +118,20 @@ export const GallerySectionPrototype: React.FC<GallerySectionProps> = ({ onSelec
         </div>
 
         {/* 2. PC & DESKTOP / TABLET VIEWS (hidden sm:block) */}
-        {/* Preserved completely unchanged with header, animations, and 4-column grid */}
+        {/* Preserved with header matching section title scale and 4-column grid */}
         <div className="hidden sm:flex sm:flex-col sm:gap-8 w-full">
-          {/* Desktop Minimal Header */}
-          <ScrollHeading delay={0}>
-            <div className="flex items-center justify-between pb-2 border-b border-primary/10">
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-secondary shadow-[0_0_10px_#4cd7f6]"></span>
-                <span className="font-label-caps text-xs text-on-surface uppercase tracking-widest font-semibold">
-                  {t.gallery.title}
-                </span>
-              </div>
-              <span className="font-tech-badge text-xs text-outline font-medium">
+          {/* Desktop Header matching other section titles */}
+          <div className="flex flex-col gap-2 max-w-2xl">
+            <ScrollHeading delay={0}>
+              <span className="font-tech-badge text-xs text-secondary tracking-widest flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#4cd7f6]"></span>
                 08 ARCHIVE NODES
               </span>
-            </div>
-          </ScrollHeading>
+              <h2 className="font-headline-lg text-2xl sm:text-3xl lg:text-4xl text-on-surface font-semibold pt-1">
+                {t.gallery.title}
+              </h2>
+            </ScrollHeading>
+          </div>
 
           {/* Desktop 4-column grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 w-full">

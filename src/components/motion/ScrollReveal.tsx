@@ -35,10 +35,10 @@ export const ScrollHeading: React.FC<RevealProps> = ({
   return (
     <motion.div
       id={id}
-      className={className}
+      className={`${className} will-change-transform`}
       initial={{ y: initialY, opacity: 0.15 }}
       whileInView={{ y: 0, opacity: 1 }}
-      viewport={{ once: false, amount: 0.2, margin: '0px 0px -40px 0px' }}
+      viewport={{ once: false, amount: 0.15, margin: '0px 0px -20px 0px' }}
       transition={{
         type: 'spring',
         damping: springConfig.damping,
@@ -73,15 +73,15 @@ export const ScrollParagraph: React.FC<RevealProps> = ({
     );
   }
 
-  const initialY = isMobile ? 16 : 30;
+  const initialY = isMobile ? 12 : 24;
 
   return (
     <motion.div
       id={id}
-      className={className}
+      className={`${className} will-change-transform`}
       initial={{ y: initialY, opacity: 0.2 }}
       whileInView={{ y: 0, opacity: 1 }}
-      viewport={{ once: false, amount: 0.2, margin: '0px 0px -30px 0px' }}
+      viewport={{ once: false, amount: 0.15, margin: '0px 0px -20px 0px' }}
       transition={{
         type: 'spring',
         damping: springConfig.damping,
@@ -121,7 +121,7 @@ export const ScrollImage: React.FC<ImageRevealProps> = ({
     );
   }
 
-  const distance = isMobile ? 25 : 60;
+  const distance = isMobile ? 18 : 45;
   let initialX = 0;
   let initialY = 0;
 
@@ -136,15 +136,15 @@ export const ScrollImage: React.FC<ImageRevealProps> = ({
   return (
     <motion.div
       id={id}
-      className={className}
-      initial={{ x: initialX, y: initialY, scale: 0.95, opacity: 0.2 }}
+      className={`${className} will-change-transform`}
+      initial={{ x: initialX, y: initialY, scale: 0.96, opacity: 0.2 }}
       whileInView={{ x: 0, y: 0, scale: 1, opacity: 1 }}
-      viewport={{ once: false, amount: 0.2, margin: '0px 0px -40px 0px' }}
+      viewport={{ once: false, amount: 0.15, margin: '0px 0px -25px 0px' }}
       transition={{
         type: 'spring',
         damping: springConfig.damping + 2,
-        stiffness: springConfig.stiffness - 10,
-        mass: springConfig.mass * 1.1,
+        stiffness: springConfig.stiffness,
+        mass: springConfig.mass * 1.05,
         delay,
       }}
     >
@@ -180,20 +180,20 @@ export const ScrollCard: React.FC<CardRevealProps> = ({
     );
   }
 
-  const initialY = isMobile ? 26 : 52;
-  const initialScale = isMobile ? 0.97 : 0.94;
-  const computedDelay = delay !== undefined ? delay : 0.25 + index * 0.12;
+  const initialY = isMobile ? 18 : 36;
+  const initialScale = isMobile ? 0.98 : 0.96;
+  const computedDelay = delay !== undefined ? delay : 0.15 + (index % 4) * 0.08;
 
   return (
     <motion.div
       id={id}
-      className={className}
+      className={`${className} will-change-transform`}
       initial={{ y: initialY, scale: initialScale, opacity: 0.2 }}
       whileInView={{ y: 0, scale: 1, opacity: 1 }}
-      viewport={{ once: false, amount: 0.15, margin: '0px 0px -40px 0px' }}
+      viewport={{ once: false, amount: 0.1, margin: '0px 0px -20px 0px' }}
       transition={{
         type: 'spring',
-        damping: springConfig.damping + 3,
+        damping: springConfig.damping + 2,
         stiffness: springConfig.stiffness,
         mass: springConfig.mass,
         delay: computedDelay,
