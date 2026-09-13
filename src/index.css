@@ -176,3 +176,12 @@
 .py-component-sm { padding-top: 0.75rem; padding-bottom: 0.75rem; }
 .py-component-xs { padding-top: 0.5rem; padding-bottom: 0.5rem; }
 .py-component-2xs { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+
+/* Hide scrollbar for clean horizontal carousel styling */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
