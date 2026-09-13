@@ -11,6 +11,7 @@ interface LogoProps {
  * Includes automatic fallback to high-precision vector SVG emblem.
  */
 export const NepalTelecomLogo: React.FC<LogoProps> = ({ className = '', size = 'md' }) => {
+  const [imageSrc, setImageSrc] = useState('/assets/nepal_telecom_logo.jpg');
   const [imageError, setImageError] = useState(false);
 
   const dimensions = {
@@ -18,6 +19,14 @@ export const NepalTelecomLogo: React.FC<LogoProps> = ({ className = '', size = '
     md: { width: 56, height: 64, imgHeight: 'h-14' },
     lg: { width: 78, height: 90, imgHeight: 'h-20' },
   }[size];
+
+  const handleImageError = () => {
+    if (imageSrc === '/assets/nepal_telecom_logo.jpg') {
+      setImageSrc('/assets/nepal_telecom_logo.png');
+    } else {
+      setImageError(true);
+    }
+  };
 
   if (!imageError) {
     return (
@@ -27,9 +36,9 @@ export const NepalTelecomLogo: React.FC<LogoProps> = ({ className = '', size = '
         aria-label="Nepal Telecom Logo"
       >
         <img
-          src="/assets/nepal_telecom_logo.jpg"
+          src={imageSrc}
           alt="Nepal Telecom Logo"
-          onError={() => setImageError(true)}
+          onError={handleImageError}
           className={`${dimensions.imgHeight} w-auto object-contain rounded-lg`}
           loading="lazy"
         />
