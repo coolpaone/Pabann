@@ -10,30 +10,88 @@ interface LanguageContextType {
   t: Translations;
 }
 
+const STORAGE_KEY = 'paban_portfolio_lang';
+
+// Helper to determine initial language safely across all environments
+const getInitialLanguage = (): Language => {
+  // 1. Check URL query param first (?lang=en or ?lang=ne)
+  try {
+    if (typeof window !== 'undefined' && window.location.search) {
+      const params = new URLSearchParams(window.location.search);
+      const urlLang = params.get('lang');
+      if (urlLang === 'ne' || urlLang === 'en') return urlLang;
+    }
+  } catch {
+    // ignore
+  }
+
+  // 2. Check localStorage
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved === 'ne' || saved === 'en') return saved;
+  } catch {
+    // ignore
+  }
+
+  // 3. Check sessionStorage
+  try {
+    const savedSession = sessionStorage.getItem(STORAGE_KEY);
+    if (savedSession === 'ne' || savedSession === 'en') return savedSession;
+  } catch {
+    // ignore
+  }
+
+  // 4. Check document.cookie
+  try {
+    if (typeof document !== 'undefined' && document.cookie) {
+      const match = document.cookie.match(/(?:^|;\s*)paban_portfolio_lang=([a-z]{2})/);
+      if (match && (match[1] === 'ne' || match[1] === 'en')) {
+        return match[1] as Language;
+      }
+    }
+  } catch {
+    // ignore
+  }
+
+  // Default to English when a visitor first visits
+  return 'en';
+};
+
+// Safe helper to write to all available storage layers
+const persistLanguage = (lang: Language) => {
+  try {
+    localStorage.setItem(STORAGE_KEY, lang);
+  } catch {
+    // ignore
+  }
+  try {
+    sessionStorage.setItem(STORAGE_KEY, lang);
+  } catch {
+    // ignore
+  }
+  try {
+    document.cookie = `${STORAGE_KEY}=${lang}; path=/; max-age=31536000; SameSite=Lax`;
+  } catch {
+    // ignore
+  }
+};
+
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>(() => {
-    try {
-      const saved = localStorage.getItem('paban_portfolio_lang');
-      if (saved === 'ne' || saved === 'en') return saved;
-    } catch {
-      // ignore
-    }
-    return 'en';
-  });
+  const [language, setLanguageState] = useState<Language>(getInitialLanguage);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    try {
-      localStorage.setItem('paban_portfolio_lang', lang);
-    } catch {
-      // ignore
-    }
+    persistLanguage(lang);
   };
 
   const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'ne' : 'en');
+    setLanguageState((prev) => {
+      const nextLang: Language = prev === 'en' ? 'ne' : 'en';
+      persistLanguage(nextLang);
+      return nextLang;
+    });
   };
 
   useEffect(() => {

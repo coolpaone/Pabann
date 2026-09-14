@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Globe, MapPin, Home, Send, CheckCircle2, Satellite, AlertCircle } from 'lucide-react';
+import { Mail, Globe, MapPin, Home, Send, CheckCircle2, Satellite, AlertCircle, ExternalLink } from 'lucide-react';
 import { TELECOM_IMAGES } from '../../data/telecomData';
 import { useLanguage } from '../../context/LanguageContext';
 import { ScrollHeading, ScrollParagraph, ScrollImage, ScrollCard } from './ScrollReveal';
@@ -17,51 +17,41 @@ export const ContactSectionPrototype: React.FC = () => {
   const [isSending, setIsSending] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim() || isSending) {
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
       return;
     }
 
-    setIsSending(true);
+    const targetEmail = 'paban.nepali@ntc.net.np';
+    const emailSubject = formData.subject.trim()
+      ? formData.subject.trim()
+      : `Message from ${formData.name.trim()}`;
+
+    const emailBody = `Sender Name: ${formData.name.trim()}
+Sender Email: ${formData.email.trim()}
+Subject: ${formData.subject.trim() || 'Network Communication'}
+
+Message:
+${formData.message.trim()}`;
+
+    const mailtoUrl = `mailto:${targetEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    
+    // Directly dispatch to user email client
+    window.location.href = mailtoUrl;
+
+    setSubmitted(true);
     setErrorMessage(null);
-    setSubmitted(false);
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json().catch(() => ({}));
-
-      if (!response.ok || !data.success) {
-        throw new Error(data.error || t.contact.errorMessage);
-      }
-
-      setSubmitted(true);
-      setFormData({ name: '', email: '', subject: '', message: '', hp: '' });
-      setTimeout(() => {
-        setSubmitted(false);
-      }, 7000);
-    } catch (err: any) {
-      console.error('Contact submission error:', err);
-      setErrorMessage(err.message || t.contact.errorMessage);
-    } finally {
-      setIsSending(false);
-    }
+    setFormData({ name: '', email: '', subject: '', message: '', hp: '' });
+    setTimeout(() => {
+      setSubmitted(false);
+    }, 7000);
   };
 
-  const handleOpenMailApp = (e: React.MouseEvent) => {
-    e.preventDefault();
-    // Reconstruct obfuscated email address dynamically on click so it is never exposed in plain text on the website
-    const u = atob('cGFiYW4ubmVwYWxp'); // 'paban.nepali'
-    const d = atob('bnRjLm5ldC5ucA==');   // 'ntc.net.np'
-    const email = `${u}@${d}`;
-    window.location.href = `mailto:${email}?subject=${encodeURIComponent('Technical Inquiry / Network Communication')}`;
+  const handleOpenMailApp = (e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
+    const targetEmail = 'paban.nepali@ntc.net.np';
+    window.location.href = `mailto:${targetEmail}?subject=${encodeURIComponent('Technical Inquiry / Network Communication')}`;
   };
 
   return (
@@ -85,30 +75,30 @@ export const ContactSectionPrototype: React.FC = () => {
           </ScrollParagraph>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
           {/* Left: Direct Telecom Contact Card (Matching reference design) */}
-          <div className="lg:col-span-5">
-            <ScrollImage direction="left" delay={0.2}>
-              <div className="flex flex-col gap-4 bg-[#0c142c] p-6 sm:p-7 rounded-[28px] border border-[#1e2d4e] shadow-[0_20px_50px_rgba(0,0,0,0.65)]">
+          <div className="w-full h-full">
+            <ScrollImage direction="left" delay={0.2} className="h-full">
+              <div className="h-full flex flex-col justify-between bg-[#070e24] p-6 sm:p-7 md:p-8 rounded-2xl sm:rounded-3xl border border-[#1b294b] shadow-[0_20px_50px_rgba(0,0,0,0.65)]">
                 {/* Profile Header */}
-                <div className="flex items-center gap-4 pb-4 border-b border-[#1c2848]">
-                  <div className="w-14 h-14 rounded-2xl overflow-hidden bg-[#050917] shrink-0 border border-[#2a3c68] shadow-md">
+                <div className="flex items-center gap-3.5 sm:gap-4 pb-4 border-b border-[#182647]">
+                  <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl overflow-hidden bg-[#050917] shrink-0 border border-[#23355d] shadow-md">
                     <img
                       alt="Paban Nepali Profile"
                       className="w-full h-full object-cover"
                       src={TELECOM_IMAGES.contactAvatar}
                     />
                   </div>
-                  <div className="flex flex-col gap-1 justify-center">
-                    <span className="font-headline-sm text-xl sm:text-2xl text-white font-bold tracking-tight leading-none">
+                  <div className="flex flex-col gap-0.5 justify-center min-w-0">
+                    <span className="font-headline-sm text-xl sm:text-2xl text-white font-bold tracking-tight leading-tight truncate">
                       {t.contact.profileName}
                     </span>
-                    <div className="flex items-center gap-2 pt-0.5">
+                    <div className="flex items-center flex-wrap gap-2 pt-0.5">
                       <span className="font-body-md text-sm sm:text-base text-[#60a5fa] font-semibold tracking-wide">
                         {t.contact.profileCompany}
                       </span>
                       <span className="w-1 h-1 rounded-full bg-[#475569]"></span>
-                      <span className="font-tech-badge text-[11px] sm:text-xs text-[#38bdf8] font-medium tracking-wider uppercase px-2 py-0.5 rounded-full bg-[#0369a1]/20 border border-[#0284c7]/30">
+                      <span className="font-tech-badge text-[10px] sm:text-[11px] text-[#38bdf8] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-md bg-[#0369a1]/20 border border-[#0284c7]/30">
                         {t.contact.profileRole}
                       </span>
                     </div>
@@ -116,57 +106,69 @@ export const ContactSectionPrototype: React.FC = () => {
                 </div>
 
                 {/* 4 Stacked Full-Width Information Cards */}
-                <div className="flex flex-col gap-3.5">
-                  {/* 1. Official Email - Glowing Send Email Button (Protects address from exposure) */}
-                  <button
-                    id="contact-official-email-btn"
-                    type="button"
-                    onClick={handleOpenMailApp}
-                    aria-label="Send Email to Official Telecom Contact"
-                    className="w-full p-4 bg-gradient-to-r from-[#3151f1] via-[#3b82f6] to-[#4cd7f6] hover:from-[#2546e8] hover:via-[#2563eb] hover:to-[#38bdf8] text-white rounded-xl flex items-center gap-4 shadow-[0_0_24px_rgba(49,81,241,0.5)] hover:shadow-[0_0_36px_rgba(76,215,246,0.7)] transition-all group cursor-pointer active:scale-[0.98] border border-cyan-300/40 text-left"
+                <div className="flex flex-col gap-3 sm:gap-3.5 pt-4">
+                  {/* 1. Official Email - Direct Email card matching other below outers and text styles */}
+                  <div
+                    id="contact-direct-email-card"
+                    onClick={() => handleOpenMailApp()}
+                    className="p-3.5 sm:p-4 bg-[#050c1e] rounded-xl sm:rounded-2xl border border-[#192748] hover:bg-[#08122d] flex items-center justify-between gap-3 sm:gap-4 cursor-pointer transition-colors group"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-white/15 backdrop-blur-md flex items-center justify-center text-white shrink-0 border border-white/25 group-hover:scale-110 transition-transform shadow-inner">
-                      <Mail className="w-5 h-5 text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.8)]" />
+                    <div className="flex items-center gap-3 sm:gap-3.5 min-w-0">
+                      <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#0091ff] group-hover:bg-[#0080f0] flex items-center justify-center text-white shrink-0 transition-all">
+                        <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                      </div>
+                      <div className="flex flex-col min-w-0">
+                        <span className="font-mono text-[10px] sm:text-[11px] text-[#8cb4e6] tracking-[0.14em] uppercase font-semibold flex items-center gap-1.5">
+                          DIRECT EMAIL
+                          <ExternalLink className="w-3.5 h-3.5 text-[#8cb4e6]" />
+                        </span>
+                        <span className="font-mono text-xs sm:text-sm text-white group-hover:text-[#38bdf8] transition-colors truncate">
+                          Send Email
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex flex-col min-w-0">
-                      <span className="font-mono text-[10px] sm:text-[11px] text-cyan-100/90 tracking-[0.14em] uppercase font-semibold">
-                        {t.contact.officialEmail}
-                      </span>
-                      <span className="font-headline-sm text-sm sm:text-base text-white font-bold tracking-wide flex items-center gap-1.5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
-                        {t.contact.sendEmailButton}
-                        <Send className="w-3.5 h-3.5 text-cyan-100 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform" />
-                      </span>
-                    </div>
-                  </button>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleOpenMailApp();
+                      }}
+                      className="px-4 sm:px-5 py-2 sm:py-2.5 bg-[#0091ff] hover:bg-[#007fe6] active:scale-95 text-white rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 transition-all cursor-pointer shrink-0"
+                    >
+                      <Mail className="w-4 h-4 text-white" />
+                      <span>Send</span>
+                    </button>
+                  </div>
 
                   {/* 2. Personal Portal */}
                   <a
-                    className="p-4 bg-[#050917] rounded-xl flex items-center gap-4 hover:bg-[#081028] transition-colors group border border-[#1c2848]"
+                    className="p-3.5 sm:p-4 bg-[#050c1e] rounded-xl sm:rounded-2xl flex items-center gap-3.5 sm:gap-4 hover:bg-[#08122d] transition-colors group border border-[#192748]"
                     href="https://www.pabannepali.com.np"
                     rel="noopener noreferrer"
                     target="_blank"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-[#141d38] flex items-center justify-center text-[#7ea1dd] group-hover:text-secondary transition-colors shrink-0 border border-[#1e2d4e]">
+                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#0d1836] flex items-center justify-center text-[#8cb4e6] group-hover:text-[#38bdf8] transition-colors shrink-0 border border-[#1d2c4e]">
                       <Globe className="w-5 h-5" />
                     </div>
                     <div className="flex flex-col min-w-0">
-                      <span className="font-mono text-[10px] sm:text-[11px] text-[#7a8ba8] tracking-[0.14em] uppercase font-semibold">
+                      <span className="font-mono text-[10px] sm:text-[11px] text-[#8cb4e6] tracking-[0.14em] uppercase font-semibold">
                         {t.contact.personalPortal}
                       </span>
-                      <span className="font-mono text-xs sm:text-sm text-white group-hover:text-secondary transition-colors truncate">
+                      <span className="font-mono text-xs sm:text-sm text-white group-hover:text-[#38bdf8] transition-colors truncate">
                         www.pabannepali.com.np
                       </span>
                     </div>
                   </a>
 
                   {/* 3. Home */}
-                  <div className="p-4 bg-[#050917] rounded-xl flex items-center gap-4 border border-[#1c2848]">
-                    <div className="w-12 h-12 rounded-xl bg-[#141d38] flex items-center justify-center text-secondary shrink-0 border border-[#1e2d4e]">
+                  <div className="p-3.5 sm:p-4 bg-[#050c1e] rounded-xl sm:rounded-2xl flex items-center gap-3.5 sm:gap-4 border border-[#192748]">
+                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#0d1836] flex items-center justify-center text-[#8cb4e6] shrink-0 border border-[#1d2c4e]">
                       <Home className="w-5 h-5" />
                     </div>
                     <div className="flex flex-col min-w-0">
-                      <span className="font-mono text-[10px] sm:text-[11px] text-[#7a8ba8] tracking-[0.14em] uppercase font-semibold">
-                        {t.contact.homeLabel || 'HOME'}
+                      <span className="font-mono text-[10px] sm:text-[11px] text-[#8cb4e6] tracking-[0.14em] uppercase font-semibold">
+                        {t.contact.homeLabel || 'HOME ADDRESS'}
                       </span>
                       <span className="font-body-md text-xs sm:text-sm text-white font-medium truncate">
                         Gorkha, Nepal
@@ -175,13 +177,13 @@ export const ContactSectionPrototype: React.FC = () => {
                   </div>
 
                   {/* 4. Work / Location */}
-                  <div className="p-4 bg-[#050917] rounded-xl flex items-center gap-4 border border-[#1c2848]">
-                    <div className="w-12 h-12 rounded-xl bg-[#141d38] flex items-center justify-center text-[#7ea1dd] shrink-0 border border-[#1e2d4e]">
+                  <div className="p-3.5 sm:p-4 bg-[#050c1e] rounded-xl sm:rounded-2xl flex items-center gap-3.5 sm:gap-4 border border-[#192748]">
+                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#0d1836] flex items-center justify-center text-[#8cb4e6] shrink-0 border border-[#1d2c4e]">
                       <MapPin className="w-5 h-5" />
                     </div>
                     <div className="flex flex-col min-w-0">
-                      <span className="font-mono text-[10px] sm:text-[11px] text-[#7a8ba8] tracking-[0.14em] uppercase font-semibold">
-                        {t.contact.workLabel || 'WORK / LOCATION'}
+                      <span className="font-mono text-[10px] sm:text-[11px] text-[#8cb4e6] tracking-[0.14em] uppercase font-semibold">
+                        {t.contact.workLabel || 'CURRENT RESIDENCE'}
                       </span>
                       <span className="font-body-md text-xs sm:text-sm text-white font-medium truncate">
                         Palpa, Nepal
@@ -193,21 +195,21 @@ export const ContactSectionPrototype: React.FC = () => {
             </ScrollImage>
           </div>
 
-          {/* Right: Carrier Dispatch / Contact Form (Pushes upward and scales 0.94 → 1.0 with 250ms delay) */}
-          <div className="lg:col-span-7">
-            <ScrollCard index={0} delay={0.25}>
-              <div className="p-6 sm:p-10 bg-[#0c142c] rounded-[28px] border border-[#1e2d4e] shadow-[0_20px_50px_rgba(0,0,0,0.65)]">
-                <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {/* Right: Carrier Dispatch / Contact Form */}
+          <div className="w-full h-full">
+            <ScrollCard index={0} delay={0.25} className="h-full">
+              <div className="h-full flex flex-col justify-between bg-[#070e24] p-6 sm:p-7 md:p-8 rounded-2xl sm:rounded-3xl border border-[#1b294b] shadow-[0_20px_50px_rgba(0,0,0,0.65)]">
+                <form className="h-full flex flex-col justify-between gap-4 sm:gap-5" onSubmit={handleSubmit}>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                     <div className="flex flex-col">
                       <label
-                        className="font-mono text-[11px] sm:text-xs font-semibold text-[#8e9fc7] tracking-[0.16em] uppercase mb-2.5 block"
+                        className="font-mono text-[11px] sm:text-xs font-semibold text-[#8cb4e6] tracking-[0.14em] uppercase mb-2 block"
                         htmlFor="nameInput"
                       >
                         {t.contact.inputName}
                       </label>
                       <input
-                        className="w-full px-4 sm:px-5 py-3.5 bg-[#050917] text-[#e8ecf8] placeholder:text-[#4f6186] font-body-sm text-sm sm:text-base rounded-xl border border-[#1c2848] focus:border-[#4361ee] focus:ring-1 focus:ring-[#4361ee] outline-none transition-all"
+                        className="w-full px-4 py-3 bg-[#040817] text-[#e8ecf8] placeholder:text-[#3e5073] font-body-sm text-sm sm:text-base rounded-xl border border-[#192748] focus:border-[#0091ff] focus:ring-1 focus:ring-[#0091ff] outline-none transition-all"
                         id="nameInput"
                         placeholder="Name"
                         required
@@ -219,13 +221,13 @@ export const ContactSectionPrototype: React.FC = () => {
 
                     <div className="flex flex-col">
                       <label
-                        className="font-mono text-[11px] sm:text-xs font-semibold text-[#8e9fc7] tracking-[0.16em] uppercase mb-2.5 block"
+                        className="font-mono text-[11px] sm:text-xs font-semibold text-[#8cb4e6] tracking-[0.14em] uppercase mb-2 block"
                         htmlFor="emailInput"
                       >
                         {t.contact.inputEmail}
                       </label>
                       <input
-                        className="w-full px-4 sm:px-5 py-3.5 bg-[#050917] text-[#e8ecf8] placeholder:text-[#4f6186] font-body-sm text-sm sm:text-base rounded-xl border border-[#1c2848] focus:border-[#4361ee] focus:ring-1 focus:ring-[#4361ee] outline-none transition-all"
+                        className="w-full px-4 py-3 bg-[#040817] text-[#e8ecf8] placeholder:text-[#3e5073] font-body-sm text-sm sm:text-base rounded-xl border border-[#192748] focus:border-[#0091ff] focus:ring-1 focus:ring-[#0091ff] outline-none transition-all"
                         id="emailInput"
                         placeholder="name@ntc.net.np"
                         required
@@ -238,13 +240,13 @@ export const ContactSectionPrototype: React.FC = () => {
 
                   <div className="flex flex-col">
                     <label
-                      className="font-mono text-[11px] sm:text-xs font-semibold text-[#8e9fc7] tracking-[0.16em] uppercase mb-2.5 block"
+                      className="font-mono text-[11px] sm:text-xs font-semibold text-[#8cb4e6] tracking-[0.14em] uppercase mb-2 block"
                       htmlFor="subjectInput"
                     >
                       {t.contact.inputSubject}
                     </label>
                     <input
-                      className="w-full px-4 sm:px-5 py-3.5 bg-[#050917] text-[#e8ecf8] placeholder:text-[#4f6186] font-body-sm text-sm sm:text-base rounded-xl border border-[#1c2848] focus:border-[#4361ee] focus:ring-1 focus:ring-[#4361ee] outline-none transition-all"
+                      className="w-full px-4 py-3 bg-[#040817] text-[#e8ecf8] placeholder:text-[#3e5073] font-body-sm text-sm sm:text-base rounded-xl border border-[#192748] focus:border-[#0091ff] focus:ring-1 focus:ring-[#0091ff] outline-none transition-all"
                       id="subjectInput"
                       placeholder="Subject"
                       type="text"
@@ -253,15 +255,15 @@ export const ContactSectionPrototype: React.FC = () => {
                     />
                   </div>
 
-                  <div className="flex flex-col">
+                  <div className="flex flex-col flex-1 min-h-[140px]">
                     <label
-                      className="font-mono text-[11px] sm:text-xs font-semibold text-[#8e9fc7] tracking-[0.16em] uppercase mb-2.5 block"
+                      className="font-mono text-[11px] sm:text-xs font-semibold text-[#8cb4e6] tracking-[0.14em] uppercase mb-2 block"
                       htmlFor="messageInput"
                     >
                       {t.contact.inputMessage}
                     </label>
                     <textarea
-                      className="w-full px-4 sm:px-5 py-3.5 bg-[#050917] text-[#e8ecf8] placeholder:text-[#4f6186] font-body-sm text-sm sm:text-base rounded-xl border border-[#1c2848] focus:border-[#4361ee] focus:ring-1 focus:ring-[#4361ee] outline-none transition-all min-h-[140px] resize-none"
+                      className="w-full px-4 py-3 bg-[#040817] text-[#e8ecf8] placeholder:text-[#3e5073] font-body-sm text-sm sm:text-base rounded-xl border border-[#192748] focus:border-[#0091ff] focus:ring-1 focus:ring-[#0091ff] outline-none transition-all resize-none flex-1 min-h-[130px]"
                       id="messageInput"
                       placeholder="Message...."
                       required
@@ -283,25 +285,25 @@ export const ContactSectionPrototype: React.FC = () => {
                     aria-hidden="true"
                   />
 
-                  <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
+                  <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
                     <button
                       disabled={isSending}
                       type="submit"
-                      className="px-7 sm:px-8 py-3.5 bg-gradient-to-r from-[#415ef4] to-[#4e6bf8] hover:from-[#3753e8] hover:to-[#435fea] text-white font-body-md text-sm sm:text-base font-semibold rounded-xl sm:rounded-2xl shadow-[0_4px_24px_rgba(65,94,244,0.45)] hover:shadow-[0_6px_32px_rgba(65,94,244,0.65)] transition-all flex items-center gap-2.5 cursor-pointer disabled:opacity-50"
+                      className="px-6 sm:px-7 py-3 bg-[#5468ff] hover:bg-[#4559f5] active:scale-95 text-white font-body-md text-sm sm:text-base font-semibold rounded-xl shadow-[0_4px_24px_rgba(84,104,255,0.4)] hover:shadow-[0_6px_30px_rgba(84,104,255,0.6)] transition-all flex items-center gap-2.5 cursor-pointer disabled:opacity-50"
                     >
                       <Satellite className={`w-4 h-4 sm:w-5 sm:h-5 text-white ${isSending ? 'animate-spin' : ''}`} />
                       {isSending ? t.contact.submitting : t.contact.submitButton}
                     </button>
 
                     {submitted && (
-                      <div className="font-mono text-xs text-secondary flex items-center gap-2 bg-[#050917] px-4 py-2.5 rounded-xl border border-secondary/30 animate-pulse">
+                      <div className="font-mono text-xs text-secondary flex items-center gap-2 bg-[#050917] px-3.5 py-2 rounded-xl border border-secondary/30 animate-pulse">
                         <CheckCircle2 className="w-4 h-4 text-secondary shrink-0" />
                         <span>{t.contact.successMessage}</span>
                       </div>
                     )}
 
                     {errorMessage && (
-                      <div className="font-mono text-xs text-[#ff6b6b] flex items-center gap-2 bg-[#190a14] px-4 py-2.5 rounded-xl border border-[#ff6b6b]/40">
+                      <div className="font-mono text-xs text-[#ff6b6b] flex items-center gap-2 bg-[#190a14] px-3.5 py-2 rounded-xl border border-[#ff6b6b]/40">
                         <AlertCircle className="w-4 h-4 text-[#ff6b6b] shrink-0" />
                         <span>{errorMessage}</span>
                       </div>
