@@ -3,7 +3,8 @@ import { MilestoneExperience, SkillCategory, GalleryItem } from '../types';
 export const TELECOM_IMAGES = {
   headerAvatar: '/assets/paban_logo.png',
   heroSpotlight: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCJ7k7stVG-CqY1aAjw1Fggo20PgpyNl-tXYLwErSP-lAkfPxP0j7ePSSpgCZnf-48rjyuKow2gZdFQsvAaPdA8whm4tCqrtZombEgoHN9JXSlzt-62zTxHgY3GVmUP2vGLWdVpCX4870elZXzGhJEqPEP-2myC5ZAr2Iicvt0l99438MXRGBh57Ov42nXOtqpHcfRZaPumMLpVgtMkDVjaGUesOh2mvqntxAiQEsT0BSwlfdpPpQy0-2LCC9Zqpv0lJhs',
-  panoramicBanner: 'https://lh3.googleusercontent.com/aida-public/AB6AXuArQvsW1voJxxh4k3653N-VZCIOw2vnzgS-MTdauKcsiXATdSkL0bbVYjwu1nY7zNhc5P2zcXOtUnDnsYXJ9FOwr746-Dzk2bCy7dN1gN0oRO5CpDzetU_iSwRNhXVSB6j97HTi0kMCefFmx3ZxXosE70LbdHjv3NNLUOY2LafTIoMYja5qQhgJgP5GFG3mEsHnQVpXhKsvWh05KoGgv_saKrKCJCVhUcM_T_5zT0a9nCMJU9wWS3BTKeov2kbjeB8r2gk',
+  panoramicBanner: '/assets/Background.png',
+  aboutBackground: '/assets/Background.png',
   contactAvatar: '/assets/paban_logo.png',
   gallery: [
     '/assets/Paban.jpg',
