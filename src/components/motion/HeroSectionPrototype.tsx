@@ -27,15 +27,16 @@ export const HeroSectionPrototype: React.FC<HeroSectionProps> = ({
         <img
           src={TELECOM_IMAGES.aboutBackground}
           alt="Nepal Telecom Transmission & Himalayan Landscape Background"
-          className="w-full h-full object-cover object-center lg:object-top opacity-55 md:opacity-65 scale-[1.02] filter saturate-[1.1]"
+          className="w-full h-full object-cover object-center lg:object-top opacity-95 md:opacity-100 scale-[1.01] filter contrast-[1.04] saturate-[1.05]"
         />
         {/* Top edge gradient to blend seamlessly with header / top dark container */}
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#0b1229] to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#0b1229] to-transparent pointer-events-none" />
         {/* Bottom edge gradient to blend smoothly into the following gallery section */}
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0b1229] via-[#0b1229]/85 to-transparent pointer-events-none" />
-        {/* Atmospheric carrier blue overlay & subtle vignette for contrast */}
-        <div className="absolute inset-0 bg-[#060e26]/50 pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_35%,transparent_20%,#0b1229_95%)] opacity-70 pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0b1229] via-[#0b1229]/80 to-transparent pointer-events-none" />
+        {/* Directional contrast scrim: deep read-contrast behind the left-side text, leaving the person on the right 100% clear and luminous */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#060e26]/95 via-[#060e26]/75 via-45% lg:via-[#060e26]/55 lg:via-50% to-transparent pointer-events-none" />
+        {/* Mobile vertical scrim to maintain text readability when stacked */}
+        <div className="lg:hidden absolute inset-0 bg-gradient-to-t from-[#060e26]/90 via-[#060e26]/50 to-transparent pointer-events-none" />
       </div>
 
       {/* Ambient photonic atmospheric glows with subtle parallax drift */}
@@ -68,7 +69,7 @@ export const HeroSectionPrototype: React.FC<HeroSectionProps> = ({
 
             {/* Summary Paragraph: Slides upward with +100ms stagger */}
             <ScrollParagraph delay={0.1}>
-              <p className="font-body-lg text-base sm:text-lg text-[#dce1ff]/90 max-w-3xl leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
+              <p className="font-body-lg text-base sm:text-lg text-[#f0f4ff] font-normal max-w-3xl leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
                 {t.hero.summary}
               </p>
             </ScrollParagraph>
