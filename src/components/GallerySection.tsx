@@ -128,9 +128,10 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onSelectPhoto })
                   className="absolute inset-0 w-full h-full"
                 >
                   <img
-                    src={currentMobilePhoto.url}
+                    src={encodeURI(currentMobilePhoto.url)}
                     alt={currentMobilePhoto.alt}
                     className="w-full h-full object-cover object-center"
+                    referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#050917]/90 via-transparent to-[#050917]/40 pointer-events-none" />
                 </motion.div>
@@ -224,8 +225,9 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onSelectPhoto })
                 <img
                   alt={item.alt}
                   className="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-105"
-                  src={item.url}
+                  src={encodeURI(item.url)}
                   loading="lazy"
+                  referrerPolicy="no-referrer"
                 />
               </div>
             );

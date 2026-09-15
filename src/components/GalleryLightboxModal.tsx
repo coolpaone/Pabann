@@ -73,9 +73,10 @@ export const GalleryLightboxModal: React.FC<GalleryLightboxModalProps> = ({
         {/* Main Image Frame */}
         <div className="relative w-full max-h-[80vh] flex items-center justify-center overflow-hidden rounded-2xl border border-primary/20 bg-surface-container-lowest shadow-2xl">
           <img
-            src={selectedPhoto.url}
+            src={encodeURI(selectedPhoto.url)}
             alt={selectedPhoto.alt}
             className="max-h-[78vh] w-auto object-contain rounded-xl select-none"
+            referrerPolicy="no-referrer"
           />
 
           {/* Navigation Arrows */}
@@ -107,7 +108,12 @@ export const GalleryLightboxModal: React.FC<GalleryLightboxModalProps> = ({
                   : 'border-transparent opacity-60 hover:opacity-100'
               }`}
             >
-              <img src={item.url} alt="" className="w-full h-full object-cover" />
+              <img
+                src={encodeURI(item.url)}
+                alt=""
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
             </button>
           ))}
         </div>

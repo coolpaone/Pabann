@@ -6,13 +6,13 @@ export const TELECOM_IMAGES = {
   panoramicBanner: 'https://lh3.googleusercontent.com/aida-public/AB6AXuArQvsW1voJxxh4k3653N-VZCIOw2vnzgS-MTdauKcsiXATdSkL0bbVYjwu1nY7zNhc5P2zcXOtUnDnsYXJ9FOwr746-Dzk2bCy7dN1gN0oRO5CpDzetU_iSwRNhXVSB6j97HTi0kMCefFmx3ZxXosE70LbdHjv3NNLUOY2LafTIoMYja5qQhgJgP5GFG3mEsHnQVpXhKsvWh05KoGgv_saKrKCJCVhUcM_T_5zT0a9nCMJU9wWS3BTKeov2kbjeB8r2gk',
   contactAvatar: '/assets/paban_logo.png',
   gallery: [
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuAXFSTOliZD5MEGPb-NGKsaRmTT6HILl7bq1kAU4xv1sqn88MNdLiYr-D70EckInE_iX2iWD_M2qAWNZ2-m4KdqTAHn4aH1mSraEgryBdEfECuPge7wTYSws8NkNpKl0GBVOlH3PAQra2_YrLNRvhBZdLKuPFoFTsa3XmUv4q8dd6wgFtlykB6UBw558IUdUGaLhk1FYtIiRVjKZCKM7jaDh98lSyvac92G0AZwXMbEHzbgY7fkLN0w3bjfYrZEOcYEg2M',
+    '/assets/Paban.jpg',
     'https://lh3.googleusercontent.com/aida-public/AB6AXuDoea_XZdy4b59G4JYm7Cz6p9QLrnehzyqn6brqF69pn8cZ4C7tjikBYE59Usr4kWJtqSuHApKZq1kL1PogcT4AFbMAD2napJX0kC8EOqOPB87Ek3Ocwl-2mvokBuVql8bagmrg2GQL8-QyfgyCL6UKQlz3FWNWW5Gv0TOhPBL2ufkKpj2yzMUzaqXgaoDgdpYJUwubLMNPvNhFwsxoUs6aKSIxEWRU7JRP1Z3hF_JBk7tKugKIb1u9YYu1wh9j9-4c-r0',
     'https://lh3.googleusercontent.com/aida-public/AB6AXuBMM3nU3OF6IjTSXk5P0ykH8CC3e0KPIwJH_WOQLt1c8bMNbqGOB3oM_Rkh65dgKyIj2_RXfD8sZHNIbt8-F2kz00jmtOMfOuQQKcxjNBX1NEeU9A-Rpq5fDiK-sXO8NvSJqFljaVU8jbPA2LlMJHbYS0soZB_tqf7jZ9W-dOQTj_sUKvLJvr2-APUXTN2FaQqBVvzAcTIEKf96b0wmAF9tYRkJ7R8WhF6O-1ASWhENWrwUT4kZdwMfHVthdq8Ct0cTTGM',
     'https://lh3.googleusercontent.com/aida-public/AB6AXuB4U87xTPOyfF8hFnOo02_CaqCHZlXqaSEldax4OcSLjkz0Kbz2-0N1DjO-qBZYk5CRKMihEHpKSymxxhtRPUdHtfUwUFVSx0Lm2K-rYnRAY6CMOqqezrTFmB76IwvS0CcwSgL6w5hbsPqjIAr0CEdaVYQPcxtwCtHuszNqvIWCTF5WnRamkQ0gTe0NCswRKqzeouBFIOqL2bbxLijUw0tjKZKd0PjAgHFjGT2J96sl8fWy1pE4trV36s5JGp7UweUCtfY',
     'https://lh3.googleusercontent.com/aida-public/AB6AXuClBkM-vDPYf-xLoyF0BDQAVdj5W9EBQ5m48ntdxTfSgMxUCkLKwb-vSgZwJyuYh0coPjmk37F4Kuse8p8JgLv9ScJdbhjbwJXOnh22xySAhV79SryhGtvxA_nzEt0_Qe0Hjr_hXrWTZvney5pY8LMe8fzJ5EsHMSh-bzu8odScEE1-_R0qtPldBMUQCxBSHvIRa80ixbiCSrUR-6Q-VdO2wzjzwPaJ-mDuyXhHuLAyumqTt5ISk_ifCwuCYWsuW99wDWw',
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuB4QpAueRQQjKTN46bsYc0JfP-sxuYngbH4ZTIxPVMjp4w1SQu3vI65M1LFwglELtsk3ZMHVwa7gw5VD2ud9bYw33KSaOv0JUlIeq8V6YtcL85UYn0Wyv3wOlIUfuHjZ1oisOq9v8unKBSyvIKtAXgqkXIk6KzxOjRnbAVdzvKaxxjgRBxhrYgEa6qVe6Z27HoI54CHa88cEVxeDuj2zd2WcbEGyQNK5xNkwppKtHqc4AGriDa5MeAVWdXnXrMelwxqQhY',
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuBoGhqPiuCe6ByrHtfWEYVaxfYFu-A5PuqPj82eZWApDyICW_43XlL-x-XjRfIKpo7wrHz9h-xltkinMA-ANhOA9YTHZuVkon-ai_zkC07g_GTgKfg6xIRSnQO3d_Jm3J1rTeIL8RLknOhMGpTC6F80oHvOO_bvymlQdUrrfW48w0LQ1bMNaDu0EKv7q1JwZW0Omscn6YHu1JfGxfvUVLVRkCEmazlRgSswxE79UUiczfvqPVBGIb1fRGI8hpBbe6j7kEo',
+    '/assets/Paban (1).jpeg',
+    '/assets/Paban (2).jpeg',
     'https://lh3.googleusercontent.com/aida-public/AB6AXuCElUo_a-Iaakd3c-DSiR09yKrLuIGY18YtHFbQ3QM_B_5lHDBbjliZMHoGqfPR0Qv4UPvsJDmFLblj5CIk7QkUnTWeKLAkMLZxeb7QzjIay3a2zlcqTlOmW5I-jRQp-5HxFp65gUa4m-ht6VlTn6bwJBm_PLuuZF5U6nJ9-69WkypqWVNed768V_vO7g-LYkRPuM-RBOIFFuMevieqjTTc1X62UT6hSWnKfNpYbefVPzCcscyWBYF4fCBNn88BpTWodPM',
   ]
 };
@@ -53,7 +53,7 @@ export const CAREER_EXPERIENCES: MilestoneExperience[] = [
     id: 'ntc-technician',
     period: '2024 – PRESENT',
     roleType: 'FULL TIME CARRIER ROLE',
-    role: 'Professional Telecom Technician',
+    role: 'Telecommunications Technician',
     company: 'Nepal Telecom (National State Telecommunications Provider)',
     companyUrl: 'https://www.ntc.net.np',
     location: 'Kathmandu & Gorkha, Nepal',
@@ -147,7 +147,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
 export const GALLERY_ITEMS: GalleryItem[] = TELECOM_IMAGES.gallery.map((url, idx) => ({
   id: idx + 1,
   url,
-  alt: `Field & Professional Telecommunications Node ${idx + 1}`,
+  alt: `Field & Telecommunications Node ${idx + 1}`,
   title: `Node ${idx + 1} - Field Operations`,
   location: idx % 2 === 0 ? 'Kathmandu Metropolitan Exchange' : 'Gorkha Mountain Link Corridor',
 }));

@@ -146,7 +146,7 @@ export const TRANSLATIONS: Record<'en' | 'ne', Translations> = {
     hero: {
       statusBadge: 'CARRIER NODE ACTIVE',
       name: 'Paban Nepali',
-      role: 'Professional Telecommunications Technician',
+      role: 'Telecommunications Technician',
       summary:
         "I'm a technology and telecom enthusiast passionate about connecting people, communities, and ideas through technology—contributing to Nepal's digital growth while creating meaningful connections with the world. I specialize in architecting and deploying robust fiber-optic transport networks, high-reliability copper infrastructure, and carrier-grade BTS/OLT transmission systems across Nepal Telecom's core urban zones and challenging mountainous terrains. My work sits at the intersection of resilient network engineering, connectivity, and innovation, with a focus on building reliable telecommunications infrastructure that enables communities, businesses, and the nation to stay connected.",
       ctaContact: 'Direct Dispatch Contact',
@@ -170,7 +170,7 @@ export const TRANSLATIONS: Record<'en' | 'ne', Translations> = {
       fullTimeRole: 'FULL TIME CARRIER ROLE',
       broadbandRole: 'BROADBAND / ISP OPERATIONS',
       fieldOpsRole: 'FIELD OPERATIONS',
-      ntcRole: 'Professional Telecom Technician',
+      ntcRole: 'Telecommunications Technician',
       ntcCompany: 'Nepal Telecom (National State Telecommunications Provider)',
       ntcSummary: 'Charged with carrier-grade transport integrity across complex mountainous and urban regions:',
       ntcHighlights: [
@@ -264,7 +264,7 @@ export const TRANSLATIONS: Record<'en' | 'ne', Translations> = {
       errorMessage: 'Something went wrong. Please try again.',
     },
     footer: {
-      description: 'Professional Telecommunications Technician specializing in resilient optical fiber transport, carrier-grade OLT/BTS systems, and enterprise connectivity across Nepal.',
+      description: 'Telecommunications Technician specializing in resilient optical fiber transport, carrier-grade OLT/BTS systems, and enterprise connectivity across Nepal.',
       telemetryTitle: 'Telemetry & Specs',
       nodeActive: 'CARRIER NODE ACTIVE',
       madeWith: 'Made with 🩵 By Paban Nepali',
@@ -296,7 +296,7 @@ export const TRANSLATIONS: Record<'en' | 'ne', Translations> = {
     hero: {
       statusBadge: 'क्यारियर नोड सक्रिय',
       name: 'पवन नेपाली',
-      role: 'व्यावसायिक दूरसञ्चार प्राविधिक',
+      role: 'दूरसञ्चार प्राविधिक',
       summary:
         'म प्रविधि र दूरसञ्चार क्षेत्रप्रति समर्पित एक उत्साही प्राविधिक हुँ, जसले प्रविधिको माध्यमबाट मानिसहरू, समुदायहरू र विचारहरूलाई जोड्ने कार्यमा विश्वास राख्छु — नेपालको डिजिटल विकासमा योगदान पुर्‍याउँदै विश्वसँग अर्थपूर्ण सम्बन्ध निर्माण गर्न म प्रतिबद्ध छु। मेरो विशेषज्ञता भरपर्दो फाइबर-अप्टिक ट्रान्सपोर्ट नेटवर्क, उच्च-विश्वसनीयता कपर पूर्वाधार, र नेपाल टेलिकमका सहरी केन्द्रहरू तथा दुर्गम पहाडी भेगहरूमा क्यारियर-ग्रेड BTS/OLT प्रसारण प्रणालीहरू विस्तार एवं मर्मत सम्भार गर्नुमा रहेको छ। मेरो कार्य भरपर्दो नेटवर्क इन्जिनियरिङ, कनेक्टिभिटी र नवप्रवर्तनको केन्द्रमा आधारित छ, जसले समुदाय, व्यवसाय र सिङ्गो राष्ट्रलाई निरन्तर जोडी राख्न मद्दत गर्दछ।',
       ctaContact: 'प्रत्यक्ष सम्पर्क गर्नुहोस्',
@@ -320,7 +320,7 @@ export const TRANSLATIONS: Record<'en' | 'ne', Translations> = {
       fullTimeRole: 'पूर्णकालीन क्यारियर सेवा',
       broadbandRole: 'ब्रोडब्यान्ड / आईएसपी सञ्चालन',
       fieldOpsRole: 'फिल्ड सञ्चालन तथा मर्मत',
-      ntcRole: 'व्यावसायिक दूरसञ्चार प्राविधिक',
+      ntcRole: 'दूरसञ्चार प्राविधिक',
       ntcCompany: 'नेपाल टेलिकम (राष्ट्रिय दूरसञ्चार सेवा प्रदायक)',
       ntcSummary: 'दुर्गम पहाडी तथा प्रमुख सहरी क्षेत्रहरूमा क्यारियर-ग्रेड ट्रान्सपोर्ट प्रणालीको विश्वसनीयता सुनिश्चितता:',
       ntcHighlights: [
@@ -414,7 +414,7 @@ export const TRANSLATIONS: Record<'en' | 'ne', Translations> = {
       errorMessage: 'केही समस्या आयो। कृपया पुन: प्रयास गर्नुहोस्।',
     },
     footer: {
-      description: 'भरपर्दो अप्टिकल फाइबर ट्रान्सपोर्ट, क्यारियर-ग्रेड OLT/BTS प्रणाली र इन्टरप्राइज कनेक्टिभिटीमा समर्पित व्यावसायिक दूरसञ्चार प्राविधिक।',
+      description: 'भरपर्दो अप्टिकल फाइबर ट्रान्सपोर्ट, क्यारियर-ग्रेड OLT/BTS प्रणाली र इन्टरप्राइज कनेक्टिभिटीमा समर्पित दूरसञ्चार प्राविधिक।',
       telemetryTitle: 'टेलिमेट्री तथा प्राविधिक विवरण',
       nodeActive: 'क्यारियर नोड सक्रिय',
       madeWith: 'Made with 🩵 By Paban Nepali',

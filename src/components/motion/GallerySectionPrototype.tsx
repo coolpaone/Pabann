@@ -107,10 +107,11 @@ export const GallerySectionPrototype: React.FC<GallerySectionProps> = ({ onSelec
                 className="snap-start shrink-0 w-[78vw] max-w-[340px] aspect-[9/15] rounded-[28px] overflow-hidden bg-[#0c142c] border border-[#1e2d4e]/60 shadow-[0_16px_36px_rgba(0,0,0,0.65)] cursor-pointer active:scale-[0.985] transition-all relative"
               >
                 <img
-                  src={item.url}
+                  src={encodeURI(item.url)}
                   alt={item.alt}
                   className="w-full h-full object-cover object-center"
                   loading="lazy"
+                  referrerPolicy="no-referrer"
                 />
               </div>
             ))}
@@ -160,8 +161,9 @@ export const GallerySectionPrototype: React.FC<GallerySectionProps> = ({ onSelec
                     <img
                       alt={item.alt}
                       className="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-105"
-                      src={item.url}
+                      src={encodeURI(item.url)}
                       loading="lazy"
+                      referrerPolicy="no-referrer"
                     />
                   </div>
                 </ScrollCard>

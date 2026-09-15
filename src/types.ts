@@ -27,6 +27,7 @@ export interface SkillCategory {
 export interface GalleryItem {
   id: number;
   url: string;
+  fallbackUrl?: string;
   alt: string;
   title?: string;
   location?: string;

@@ -25,7 +25,7 @@ export const Footer: React.FC = () => {
                 FIBER OPTIC SPECIALIST
               </span>
               <span className="font-tech-badge text-[11px] text-[#4cd7f6] bg-surface-container px-2.5 py-1 rounded border border-[#4cd7f6]/20">
-                Professional Telecom Technician
+                Telecommunications Technician
               </span>
             </div>
           </div>

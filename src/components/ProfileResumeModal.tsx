@@ -91,7 +91,7 @@ export const ProfileResumeModal: React.FC<ProfileResumeModalProps> = ({ isOpen, 
                   <NepalFlag size="sm" />
                 </div>
                 <p className="font-body-md text-sm md:text-base text-secondary font-medium">
-                  Professional Telecommunications Technician
+                  Telecommunications Technician
                 </p>
                 <span className="font-tech-badge text-xs text-outline pt-0.5">
                   Nepal Telecom Core Infrastructure Division
