@@ -15,6 +15,15 @@ export const ContactSection: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [avatarSrc, setAvatarSrc] = useState(TELECOM_IMAGES.contactAvatar);
+
+  const handleAvatarError = () => {
+    if (avatarSrc.startsWith('/assets/paban_profile.jpg')) {
+      setAvatarSrc('/assets/Paban%20profile.jpg?v=3');
+    } else if (avatarSrc.startsWith('/assets/Paban')) {
+      setAvatarSrc('/assets/paban_logo.png?v=2');
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -80,7 +89,9 @@ ${formData.message.trim()}`;
                   <img
                     alt="Paban Nepali Profile"
                     className="w-full h-full object-cover"
-                    src={TELECOM_IMAGES.contactAvatar}
+                    src={avatarSrc}
+                    onError={handleAvatarError}
+                    referrerPolicy="no-referrer"
                   />
                 </div>
                 <div className="flex flex-col gap-0.5 justify-center min-w-0">
@@ -108,8 +119,8 @@ ${formData.message.trim()}`;
                   className="p-3.5 sm:p-4 bg-[#050c1e] rounded-xl sm:rounded-2xl border border-[#192748] hover:bg-[#08122d] flex items-center justify-between gap-3 sm:gap-4 cursor-pointer transition-colors group"
                 >
                   <div className="flex items-center gap-3 sm:gap-3.5 min-w-0">
-                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#0091ff] group-hover:bg-[#0080f0] flex items-center justify-center text-white shrink-0 transition-all">
-                      <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#0d1836] flex items-center justify-center text-[#8cb4e6] group-hover:text-[#38bdf8] transition-colors shrink-0 border border-[#1d2c4e]">
+                      <Mail className="w-5 h-5" />
                     </div>
                     <div className="flex flex-col min-w-0">
                       <span className="font-mono text-[10px] sm:text-[11px] text-[#8cb4e6] tracking-[0.14em] uppercase font-semibold flex items-center gap-1.5">

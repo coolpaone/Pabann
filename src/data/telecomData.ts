@@ -1,21 +1,17 @@
 import { MilestoneExperience, SkillCategory, GalleryItem } from '../types';
 
 export const TELECOM_IMAGES = {
-  headerAvatar: '/assets/paban_logo.png',
+  headerAvatar: '/assets/paban_logo.png?v=2',
   heroSpotlight: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCJ7k7stVG-CqY1aAjw1Fggo20PgpyNl-tXYLwErSP-lAkfPxP0j7ePSSpgCZnf-48rjyuKow2gZdFQsvAaPdA8whm4tCqrtZombEgoHN9JXSlzt-62zTxHgY3GVmUP2vGLWdVpCX4870elZXzGhJEqPEP-2myC5ZAr2Iicvt0l99438MXRGBh57Ov42nXOtqpHcfRZaPumMLpVgtMkDVjaGUesOh2mvqntxAiQEsT0BSwlfdpPpQy0-2LCC9Zqpv0lJhs',
   panoramicBanner: '/assets/Background.png',
   aboutBackground: '/assets/Background.png',
-  contactAvatar: '/assets/paban_logo.png',
+  contactAvatar: '/assets/paban_profile.jpg?v=3',
   gallery: [
     '/assets/Paban.jpg',
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuDoea_XZdy4b59G4JYm7Cz6p9QLrnehzyqn6brqF69pn8cZ4C7tjikBYE59Usr4kWJtqSuHApKZq1kL1PogcT4AFbMAD2napJX0kC8EOqOPB87Ek3Ocwl-2mvokBuVql8bagmrg2GQL8-QyfgyCL6UKQlz3FWNWW5Gv0TOhPBL2ufkKpj2yzMUzaqXgaoDgdpYJUwubLMNPvNhFwsxoUs6aKSIxEWRU7JRP1Z3hF_JBk7tKugKIb1u9YYu1wh9j9-4c-r0',
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuBMM3nU3OF6IjTSXk5P0ykH8CC3e0KPIwJH_WOQLt1c8bMNbqGOB3oM_Rkh65dgKyIj2_RXfD8sZHNIbt8-F2kz00jmtOMfOuQQKcxjNBX1NEeU9A-Rpq5fDiK-sXO8NvSJqFljaVU8jbPA2LlMJHbYS0soZB_tqf7jZ9W-dOQTj_sUKvLJvr2-APUXTN2FaQqBVvzAcTIEKf96b0wmAF9tYRkJ7R8WhF6O-1ASWhENWrwUT4kZdwMfHVthdq8Ct0cTTGM',
     'https://lh3.googleusercontent.com/aida-public/AB6AXuB4U87xTPOyfF8hFnOo02_CaqCHZlXqaSEldax4OcSLjkz0Kbz2-0N1DjO-qBZYk5CRKMihEHpKSymxxhtRPUdHtfUwUFVSx0Lm2K-rYnRAY6CMOqqezrTFmB76IwvS0CcwSgL6w5hbsPqjIAr0CEdaVYQPcxtwCtHuszNqvIWCTF5WnRamkQ0gTe0NCswRKqzeouBFIOqL2bbxLijUw0tjKZKd0PjAgHFjGT2J96sl8fWy1pE4trV36s5JGp7UweUCtfY',
     'https://lh3.googleusercontent.com/aida-public/AB6AXuClBkM-vDPYf-xLoyF0BDQAVdj5W9EBQ5m48ntdxTfSgMxUCkLKwb-vSgZwJyuYh0coPjmk37F4Kuse8p8JgLv9ScJdbhjbwJXOnh22xySAhV79SryhGtvxA_nzEt0_Qe0Hjr_hXrWTZvney5pY8LMe8fzJ5EsHMSh-bzu8odScEE1-_R0qtPldBMUQCxBSHvIRa80ixbiCSrUR-6Q-VdO2wzjzwPaJ-mDuyXhHuLAyumqTt5ISk_ifCwuCYWsuW99wDWw',
-    '/assets/Paban (1).jpeg',
     '/assets/Paban (2).jpeg',
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuCElUo_a-Iaakd3c-DSiR09yKrLuIGY18YtHFbQ3QM_B_5lHDBbjliZMHoGqfPR0Qv4UPvsJDmFLblj5CIk7QkUnTWeKLAkMLZxeb7QzjIay3a2zlcqTlOmW5I-jRQp-5HxFp65gUa4m-ht6VlTn6bwJBm_PLuuZF5U6nJ9-69WkypqWVNed768V_vO7g-LYkRPuM-RBOIFFuMevieqjTTc1X62UT6hSWnKfNpYbefVPzCcscyWBYF4fCBNn88BpTWodPM',
-  ]
+  ],
 };
 
 export const METRIC_STATS = [

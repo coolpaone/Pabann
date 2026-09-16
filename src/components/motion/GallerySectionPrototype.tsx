@@ -126,7 +126,7 @@ export const GallerySectionPrototype: React.FC<GallerySectionProps> = ({ onSelec
             <ScrollHeading delay={0}>
               <span className="font-tech-badge text-xs text-secondary tracking-widest flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#4cd7f6]"></span>
-                08 ARCHIVE NODES
+                04 ARCHIVE NODES
               </span>
               <h2 className="font-headline-lg text-2xl sm:text-3xl lg:text-4xl text-on-surface font-semibold pt-1">
                 {t.gallery.title}

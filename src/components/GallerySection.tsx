@@ -69,7 +69,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onSelectPhoto })
             </span>
           </div>
           <span className="font-tech-badge text-xs text-outline font-medium">
-            08 ARCHIVE NODES
+            04 ARCHIVE NODES
           </span>
         </div>
 
