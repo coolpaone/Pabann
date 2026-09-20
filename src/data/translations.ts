@@ -136,7 +136,7 @@ export const TRANSLATIONS: Record<'en' | 'ne', Translations> = {
   en: {
     nav: {
       about: 'About',
-      experience: 'Experience',
+      experience: 'Milestones',
       gallery: 'Gallery',
       expertise: 'Expertise',
       contact: 'Contact',

@@ -69,7 +69,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onSelectPhoto })
             </span>
           </div>
           <span className="font-tech-badge text-xs text-outline font-medium">
-            04 ARCHIVE NODES
+            ARCHIVE NODES
           </span>
         </div>
 
@@ -199,7 +199,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onSelectPhoto })
         </div>
 
         {/* 2. PC & DESKTOP / TABLET VIEWS (hidden sm:grid) */}
-        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 w-full">
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full">
           {GALLERY_ITEMS.map((item, index) => {
             const isCyanHover = index % 2 === 1;
 

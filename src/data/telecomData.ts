@@ -8,7 +8,6 @@ export const TELECOM_IMAGES = {
   contactAvatar: '/assets/paban_profile.jpg?v=3',
   gallery: [
     '/assets/Paban.jpg',
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuB4U87xTPOyfF8hFnOo02_CaqCHZlXqaSEldax4OcSLjkz0Kbz2-0N1DjO-qBZYk5CRKMihEHpKSymxxhtRPUdHtfUwUFVSx0Lm2K-rYnRAY6CMOqqezrTFmB76IwvS0CcwSgL6w5hbsPqjIAr0CEdaVYQPcxtwCtHuszNqvIWCTF5WnRamkQ0gTe0NCswRKqzeouBFIOqL2bbxLijUw0tjKZKd0PjAgHFjGT2J96sl8fWy1pE4trV36s5JGp7UweUCtfY',
     'https://lh3.googleusercontent.com/aida-public/AB6AXuClBkM-vDPYf-xLoyF0BDQAVdj5W9EBQ5m48ntdxTfSgMxUCkLKwb-vSgZwJyuYh0coPjmk37F4Kuse8p8JgLv9ScJdbhjbwJXOnh22xySAhV79SryhGtvxA_nzEt0_Qe0Hjr_hXrWTZvney5pY8LMe8fzJ5EsHMSh-bzu8odScEE1-_R0qtPldBMUQCxBSHvIRa80ixbiCSrUR-6Q-VdO2wzjzwPaJ-mDuyXhHuLAyumqTt5ISk_ifCwuCYWsuW99wDWw',
     '/assets/Paban (2).jpeg',
   ],

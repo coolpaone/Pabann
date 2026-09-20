@@ -55,7 +55,7 @@ export const GalleryLightboxModal: React.FC<GalleryLightboxModalProps> = ({
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
             <span className="text-secondary tracking-widest font-semibold">
-              FIELD ARCHIVE NODE {String(selectedPhoto.id).padStart(2, '0')} / 08
+              FIELD ARCHIVE NODE {String(selectedPhoto.id).padStart(2, '0')} / {String(GALLERY_ITEMS.length).padStart(2, '0')}
             </span>
           </div>
 

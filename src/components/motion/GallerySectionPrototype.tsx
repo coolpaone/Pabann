@@ -126,7 +126,7 @@ export const GallerySectionPrototype: React.FC<GallerySectionProps> = ({ onSelec
             <ScrollHeading delay={0}>
               <span className="font-tech-badge text-xs text-secondary tracking-widest flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#4cd7f6]"></span>
-                04 ARCHIVE NODES
+                ARCHIVE NODES
               </span>
               <h2 className="font-headline-lg text-2xl sm:text-3xl lg:text-4xl text-on-surface font-semibold pt-1">
                 {t.gallery.title}
@@ -134,8 +134,8 @@ export const GallerySectionPrototype: React.FC<GallerySectionProps> = ({ onSelec
             </ScrollHeading>
           </div>
 
-          {/* Desktop 4-column grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 w-full">
+          {/* Desktop 3-column grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full">
             {GALLERY_ITEMS.map((item, index) => {
               const isCyanHover = index % 2 === 1;
 

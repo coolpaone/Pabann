@@ -69,8 +69,8 @@ export const ExperienceSectionPrototype: React.FC = () => {
             return (
               <ScrollCard key={exp.id} index={index}>
                 <div className="relative flex flex-col gap-3.5 bg-surface-container-low/80 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-primary/15 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:border-secondary/30 transition-all group">
-                  {/* Node Marker on vertical line */}
-                  <div className="absolute -left-9 sm:-left-12 top-7 w-7 h-7 rounded-full bg-[#060d24] flex items-center justify-center border border-primary/20">
+                  {/* Node Marker on vertical line - precisely centered */}
+                  <div className="absolute -left-[25px] sm:-left-[33px] top-7 w-7 h-7 rounded-full bg-[#060d24] flex items-center justify-center border border-primary/20 z-10">
                     <span
                       className={`w-3.5 h-3.5 rounded-full ${
                         isFirst

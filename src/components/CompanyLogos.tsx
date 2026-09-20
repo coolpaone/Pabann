@@ -21,27 +21,33 @@ export const NepalTelecomLogo: React.FC<LogoProps> = ({ className = '', size = '
 
   if (!imageError) {
     return (
-      <div
-        className={`inline-flex items-center justify-center rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(6,84,156,0.5)] bg-[#06549c] p-1 border border-[#06549c]/40 ${className}`}
-        title="Nepal Telecom (नेपाल टेलिकम)"
-        aria-label="Nepal Telecom Logo"
+      <a
+        href="https://www.ntc.net.np"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`inline-flex items-center justify-center rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(6,84,156,0.5)] bg-[#06549c] p-1 border border-[#06549c]/40 cursor-pointer hover:shadow-[0_0_24px_rgba(76,215,246,0.7)] hover:border-secondary/60 hover:scale-105 active:scale-95 transition-all group/logo ${className}`}
+        title="Visit Nepal Telecom (www.ntc.net.np)"
+        aria-label="Visit Nepal Telecom website (www.ntc.net.np)"
       >
         <img
           src="/assets/nepal_telecom_logo.png"
           alt="Nepal Telecom Logo"
           onError={() => setImageError(true)}
-          className={`${dimensions.imgHeight} w-auto object-contain rounded-lg`}
+          className={`${dimensions.imgHeight} w-auto object-contain rounded-lg transition-transform group-hover/logo:scale-105`}
           loading="lazy"
         />
-      </div>
+      </a>
     );
   }
 
   return (
-    <div
-      className={`inline-flex items-center justify-center rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(6,84,156,0.6)] ${className}`}
-      title="Nepal Telecom (नेपाल टेलिकम)"
-      aria-label="Nepal Telecom Logo"
+    <a
+      href="https://www.ntc.net.np"
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`inline-flex items-center justify-center rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(6,84,156,0.6)] cursor-pointer hover:shadow-[0_0_24px_rgba(76,215,246,0.7)] hover:border-secondary/60 hover:scale-105 active:scale-95 transition-all group/logo ${className}`}
+      title="Visit Nepal Telecom (www.ntc.net.np)"
+      aria-label="Visit Nepal Telecom website (www.ntc.net.np)"
     >
       <svg
         width={dimensions.width}
@@ -148,7 +154,7 @@ export const NepalTelecomLogo: React.FC<LogoProps> = ({ className = '', size = '
           fill="#f4bc32"
         />
       </svg>
-    </div>
+    </a>
   );
 };
 
