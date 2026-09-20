@@ -124,7 +124,7 @@ export const GallerySectionPrototype: React.FC<GallerySectionProps> = ({ onSelec
           {/* Desktop Header matching other section titles */}
           <div className="flex flex-col gap-2 max-w-2xl">
             <ScrollHeading delay={0}>
-              <span className="font-tech-badge text-xs text-secondary tracking-widest flex items-center gap-2">
+              <span className="font-tech-badge text-xs text-secondary tracking-widest flex items-center gap-2 transition-transform duration-200 hover:scale-[1.02] origin-left">
                 <span className="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#4cd7f6]"></span>
                 ARCHIVE NODES
               </span>

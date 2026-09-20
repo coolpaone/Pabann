@@ -68,7 +68,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onSelectPhoto })
               {t.gallery.title}
             </span>
           </div>
-          <span className="font-tech-badge text-xs text-outline font-medium">
+          <span className="font-tech-badge text-xs text-outline font-medium transition-transform duration-200 hover:scale-[1.02] inline-block">
             ARCHIVE NODES
           </span>
         </div>
