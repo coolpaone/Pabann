@@ -10,22 +10,43 @@ interface GallerySectionProps {
 
 export const GallerySectionPrototype: React.FC<GallerySectionProps> = ({ onSelectPhoto }) => {
   const { t } = useLanguage();
-  const [, setMobileIndex] = useState(0);
+  const [mobileIndex, setMobileIndex] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const isProgrammaticScroll = useRef(false);
 
   const totalPhotos = GALLERY_ITEMS.length;
+
+  const scrollToPhoto = (index: number) => {
+    if (!scrollContainerRef.current) return;
+    const container = scrollContainerRef.current;
+    const cards = container.querySelectorAll<HTMLElement>('[data-gallery-card]');
+    if (cards[index]) {
+      isProgrammaticScroll.current = true;
+      setMobileIndex(index);
+      cards[index].scrollIntoView({
+        behavior: 'smooth',
+        inline: 'start',
+        block: 'nearest',
+      });
+      setTimeout(() => {
+        isProgrammaticScroll.current = false;
+      }, 400);
+    }
+  };
 
   // Keep track of scroll position on touch swipe
   const handleScroll = () => {
     if (isProgrammaticScroll.current || !scrollContainerRef.current) return;
     const container = scrollContainerRef.current;
     const scrollLeft = container.scrollLeft;
-    const cardWidth = container.offsetWidth * 0.76;
-    if (cardWidth > 0) {
-      const newIndex = Math.round(scrollLeft / cardWidth);
-      if (newIndex >= 0 && newIndex < totalPhotos) {
-        setMobileIndex(newIndex);
+    const cards = container.querySelectorAll<HTMLElement>('[data-gallery-card]');
+    if (cards.length > 0) {
+      const cardWidth = cards[0].offsetWidth + 12; // card width + gap-3
+      if (cardWidth > 0) {
+        const newIndex = Math.min(Math.max(Math.round(scrollLeft / cardWidth), 0), totalPhotos - 1);
+        if (newIndex !== mobileIndex) {
+          setMobileIndex(newIndex);
+        }
       }
     }
   };
@@ -35,11 +56,17 @@ export const GallerySectionPrototype: React.FC<GallerySectionProps> = ({ onSelec
       <div className="max-w-7xl mx-auto flex flex-col gap-6 sm:gap-8 w-full">
         {/* 1. MOBILE HEADER & PEAKING CAROUSEL (sm:hidden) */}
         <div className="block sm:hidden w-full">
-          {/* Top Bar: "Gallery" Title on Left */}
-          <div className="flex items-center justify-between pb-5 px-1">
-            <h2 className="text-3xl font-bold text-white tracking-tight">
-              Gallery
-            </h2>
+          {/* Mobile Header matching PC version */}
+          <div className="flex flex-col gap-2 pb-5 px-1">
+            <ScrollHeading delay={0}>
+              <span className="font-tech-badge text-xs text-secondary tracking-widest flex items-center gap-2 transition-transform duration-200 hover:scale-[1.02] origin-left">
+                <span className="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#4cd7f6]"></span>
+                ARCHIVE NODES
+              </span>
+              <h2 className="font-headline-lg text-2xl sm:text-3xl lg:text-4xl text-on-surface font-semibold pt-1">
+                {t.gallery.title}
+              </h2>
+            </ScrollHeading>
           </div>
 
           {/* Horizontal Swiping Track with Next Photo Peeking (Same like on iPhone) */}
@@ -65,6 +92,26 @@ export const GallerySectionPrototype: React.FC<GallerySectionProps> = ({ onSelec
                 />
               </div>
             ))}
+          </div>
+
+          {/* iPhone-style pagination slide indicator under photos */}
+          <div className="flex items-center justify-center gap-2 pt-3 pb-1">
+            {GALLERY_ITEMS.map((item, idx) => {
+              const isActive = idx === mobileIndex;
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => scrollToPhoto(idx)}
+                  aria-label={`Go to slide ${idx + 1}`}
+                  className={`h-2 rounded-full transition-all duration-300 ease-out cursor-pointer ${
+                    isActive
+                      ? 'w-7 bg-[#00a2ff] shadow-[0_0_10px_rgba(0,162,255,0.6)]'
+                      : 'w-2 bg-[#273859] hover:bg-[#394f7d]'
+                  }`}
+                />
+              );
+            })}
           </div>
         </div>
 
