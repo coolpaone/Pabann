@@ -6,12 +6,12 @@ export const BackToTopMobile: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show button when user has scrolled down past 260px
-      if (window.scrollY > 260) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      // Show button strictly when user has reached the bottom of the page (within 220px)
+      const scrollPosition = window.innerHeight + window.scrollY;
+      const documentHeight = document.documentElement.scrollHeight;
+      const isAtBottom = documentHeight - scrollPosition <= 220;
+
+      setIsVisible(isAtBottom);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });

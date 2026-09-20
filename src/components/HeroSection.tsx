@@ -23,16 +23,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         <img
           src={TELECOM_IMAGES.aboutBackground}
           alt="Nepal Telecom Transmission & Himalayan Landscape Background"
-          className="w-full h-full object-cover object-center md:object-[69%_15%] lg:object-top opacity-95 md:opacity-100 scale-[1.01] filter contrast-[1.04] saturate-[1.05]"
+          className="w-full h-full object-cover object-[68%_18%] md:object-[69%_15%] lg:object-top opacity-95 md:opacity-100 scale-[1.01] filter contrast-[1.04] saturate-[1.05]"
         />
         {/* Top edge gradient to blend seamlessly with header / top dark container */}
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#0b1229] to-transparent pointer-events-none" />
         {/* Bottom edge gradient to blend smoothly into the following gallery section */}
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0b1229] via-[#0b1229]/80 to-transparent pointer-events-none" />
         {/* Directional contrast scrim: deep read-contrast behind the left-side text, leaving the person visible in the background */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#060e26]/95 via-[#060e26]/80 via-45% md:via-[#060e26]/70 md:via-55% lg:via-[#060e26]/55 lg:via-50% to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#060e26]/85 via-[#060e26]/60 via-50% md:from-[#060e26]/95 md:via-[#060e26]/70 md:via-55% lg:via-[#060e26]/55 lg:via-50% to-transparent pointer-events-none" />
         {/* Mobile vertical scrim to maintain text readability when stacked */}
-        <div className="lg:hidden absolute inset-0 bg-gradient-to-t from-[#060e26]/90 via-[#060e26]/40 to-transparent pointer-events-none" />
+        <div className="lg:hidden absolute inset-0 bg-gradient-to-t from-[#060e26]/85 via-[#060e26]/35 to-transparent pointer-events-none" />
       </div>
 
       {/* Ambient photonic atmospheric glows */}

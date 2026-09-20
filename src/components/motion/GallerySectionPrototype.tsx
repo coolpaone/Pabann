@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState, useRef } from 'react';
 import { GALLERY_ITEMS } from '../../data/telecomData';
 import { GalleryItem } from '../../types';
 import { useLanguage } from '../../context/LanguageContext';
@@ -11,39 +10,11 @@ interface GallerySectionProps {
 
 export const GallerySectionPrototype: React.FC<GallerySectionProps> = ({ onSelectPhoto }) => {
   const { t } = useLanguage();
-  const [mobileIndex, setMobileIndex] = useState(0);
+  const [, setMobileIndex] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const isProgrammaticScroll = useRef(false);
 
   const totalPhotos = GALLERY_ITEMS.length;
-
-  const scrollToPhoto = (index: number) => {
-    if (!scrollContainerRef.current) return;
-    const container = scrollContainerRef.current;
-    const cards = container.querySelectorAll<HTMLElement>('[data-gallery-card]');
-    if (cards[index]) {
-      isProgrammaticScroll.current = true;
-      setMobileIndex(index);
-      cards[index].scrollIntoView({
-        behavior: 'smooth',
-        inline: 'start',
-        block: 'nearest',
-      });
-      setTimeout(() => {
-        isProgrammaticScroll.current = false;
-      }, 400);
-    }
-  };
-
-  const handleNext = () => {
-    const nextIdx = (mobileIndex + 1) % totalPhotos;
-    scrollToPhoto(nextIdx);
-  };
-
-  const handlePrev = () => {
-    const prevIdx = (mobileIndex - 1 + totalPhotos) % totalPhotos;
-    scrollToPhoto(prevIdx);
-  };
 
   // Keep track of scroll position on touch swipe
   const handleScroll = () => {
@@ -53,7 +24,7 @@ export const GallerySectionPrototype: React.FC<GallerySectionProps> = ({ onSelec
     const cardWidth = container.offsetWidth * 0.76;
     if (cardWidth > 0) {
       const newIndex = Math.round(scrollLeft / cardWidth);
-      if (newIndex >= 0 && newIndex < totalPhotos && newIndex !== mobileIndex) {
+      if (newIndex >= 0 && newIndex < totalPhotos) {
         setMobileIndex(newIndex);
       }
     }
@@ -62,34 +33,13 @@ export const GallerySectionPrototype: React.FC<GallerySectionProps> = ({ onSelec
   return (
     <section id="gallery" className="w-full bg-[#060d24] py-12 sm:py-16 px-4 sm:px-6 md:px-10 lg:px-20 overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col gap-6 sm:gap-8 w-full">
-        {/* 1. MOBILE HEADER & PEAKING CAROUSEL (sm:hidden) - Exactly as in user image */}
+        {/* 1. MOBILE HEADER & PEAKING CAROUSEL (sm:hidden) */}
         <div className="block sm:hidden w-full">
-          {/* Top Bar: "Gallery" Title on Left, "<" and "Next >" Buttons on Right */}
+          {/* Top Bar: "Gallery" Title on Left */}
           <div className="flex items-center justify-between pb-5 px-1">
             <h2 className="text-3xl font-bold text-white tracking-tight">
               Gallery
             </h2>
-
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={handlePrev}
-                className="w-10 h-10 rounded-xl bg-[#0c142c] border border-[#1e2d4e] flex items-center justify-center text-white/70 hover:text-white active:scale-95 transition-all cursor-pointer"
-                aria-label="Previous photo"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-
-              <button
-                type="button"
-                onClick={handleNext}
-                className="px-4 h-10 rounded-xl bg-[#0088ff] hover:bg-[#0077ee] active:scale-95 text-white font-semibold text-sm flex items-center gap-1.5 shadow-[0_4px_16px_rgba(0,136,255,0.4)] transition-all cursor-pointer"
-                aria-label="Next photo"
-              >
-                <span>Next</span>
-                <ChevronRight className="w-4 h-4 stroke-[2.5]" />
-              </button>
-            </div>
           </div>
 
           {/* Horizontal Swiping Track with Next Photo Peeking (Same like on iPhone) */}
