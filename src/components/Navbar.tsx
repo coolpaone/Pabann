@@ -49,15 +49,15 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
         </div>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-8">
+        {/* Desktop & Tablet Navigation Links */}
+        <nav className="hidden md:flex items-center gap-4 lg:gap-8">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
               <button
                 key={link.id}
                 onClick={() => handleNavClick(link.id)}
-                className={`font-body-sm text-sm tracking-wide transition-all cursor-pointer relative py-1 ${
+                className={`font-body-sm text-xs md:text-[13px] lg:text-sm tracking-wide whitespace-nowrap transition-all cursor-pointer relative py-1 ${
                   isActive
                     ? 'text-primary font-semibold'
                     : 'text-on-surface-variant hover:text-on-surface'
@@ -77,12 +77,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Translate Button: Positioned strictly to the left side of profile picture */}
           <button
             onClick={toggleLanguage}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-surface-container hover:bg-surface-container-high border border-secondary/35 hover:border-secondary rounded-full font-tech-badge text-xs text-on-surface transition-all shadow-[0_0_12px_rgba(76,215,246,0.2)] cursor-pointer group"
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-surface-container hover:bg-surface-container-high border border-secondary/35 hover:border-secondary rounded-full font-tech-badge text-xs text-on-surface transition-all shadow-[0_0_12px_rgba(76,215,246,0.2)] cursor-pointer group shrink-0"
             title={t.nav.languageLabel}
             aria-label={t.nav.languageLabel}
           >
             <Languages className="w-3.5 h-3.5 text-secondary group-hover:rotate-12 transition-transform shrink-0" />
-            <span className="font-semibold text-secondary">
+            <span className="font-semibold text-secondary whitespace-nowrap">
               {language === 'en' ? 'नेपाली' : 'English'}
             </span>
           </button>
@@ -99,10 +99,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             />
           </div>
 
-          {/* Mobile Menu Trigger */}
+          {/* Mobile Menu Trigger (hidden on tablet md: and desktop lg:) */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-on-surface-variant hover:text-white rounded-lg hover:bg-surface-container cursor-pointer"
+            className="md:hidden p-2 text-on-surface-variant hover:text-white rounded-lg hover:bg-surface-container cursor-pointer"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -112,7 +112,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#060d24]/98 border-b border-primary/20 px-6 py-4 flex flex-col gap-3">
+        <div className="md:hidden bg-[#060d24]/98 border-b border-primary/20 px-6 py-4 flex flex-col gap-3">
           {navLinks.map((link) => (
             <button
               key={link.id}
